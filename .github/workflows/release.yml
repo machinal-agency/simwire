@@ -15,7 +15,6 @@ permissions:
 jobs:
   npm:
     runs-on: ubuntu-latest
-    environment: npm
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -37,6 +36,18 @@ jobs:
             echo "Tag $tag does not match package version $pkg" >&2
             exit 1
           fi
+
+      - name: Drop the workspace-only devDependency from the published metadata
+        # tsup inlines @simwire/protocol, so by this point it is a build input
+        # rather than a dependency, and "workspace:*" is not a spec npm can read.
+        working-directory: packages/sdk
+        run: |
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            delete pkg.devDependencies['@simwire/protocol'];
+            fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+          "
 
       - run: npm publish --provenance --access public
         working-directory: packages/sdk
