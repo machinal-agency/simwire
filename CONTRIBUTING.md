@@ -60,3 +60,18 @@ Keep them focused: one concern per pull request is much easier to review than a
 sweep. CI runs the SDK build and tests plus an Android build; both need to be
 green. If your change alters what users see, update the docs page in
 `apps/web/src/pages/docs.astro` too.
+
+## Releasing
+
+Versions are published by CI, not from a laptop, so npm can attest that the
+tarball came from this repository at a known commit.
+
+1. Bump `version` in `packages/sdk/package.json` and `versionName` in
+   `apps/android/app/build.gradle.kts`, then commit.
+2. Build the signed APK (`gradle :app:assembleRelease`) and compute its digest
+   with `sha256sum`.
+3. Draft a GitHub release tagged `vX.Y.Z`, attach the APK and its `.sha256`
+   file, and include the digest in the notes.
+4. Publishing the release triggers `.github/workflows/release.yml`, which builds,
+   tests, checks the tag against the package version, and publishes to npm with
+   provenance.

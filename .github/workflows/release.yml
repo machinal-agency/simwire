@@ -1,0 +1,44 @@
+name: Publish
+
+# Publishing from CI rather than a laptop gives npm a verifiable link between
+# the tarball and the commit it was built from, which matters for a package
+# that can read your text messages.
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write # required for provenance
+
+jobs:
+  npm:
+    runs-on: ubuntu-latest
+    environment: npm
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm test
+
+      - name: Check the tag matches the package version
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          pkg=$(node -p "require('./packages/sdk/package.json').version")
+          if [ "${{ github.event_name }}" = "release" ] && [ "$tag" != "$pkg" ]; then
+            echo "Tag $tag does not match package version $pkg" >&2
+            exit 1
+          fi
+
+      - run: npm publish --provenance --access public
+        working-directory: packages/sdk
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

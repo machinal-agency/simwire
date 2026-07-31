@@ -29,6 +29,14 @@ import Nav from "../components/Nav.astro";
       Served from the
       <a href="https://github.com/machinal-agency/simwire/releases/tag/v0.2.0" style="text-decoration: underline; text-underline-offset: 3px;">official GitHub release</a>
     </div>
+    <details class="verify">
+      <summary>Check the file is the one we built</summary>
+      <p>The app installs outside the Play Store, so verify the download rather than trusting it:</p>
+      <code>sha256sum simwire-0.2.0.apk</code>
+      <p class="sum">3e52d50f06f4099551a7da4f5c457492899287a01d56aec7aeb35a5fb5e295c7</p>
+      <p>On macOS, <code>shasum -a 256 simwire-0.2.0.apk</code>. The digest is also
+      published as a file next to the APK on the release page.</p>
+    </details>
   </div>
 </header>
 
@@ -122,6 +130,23 @@ import Nav from "../components/Nav.astro";
 </Base>
 
 <style is:global>
+  .verify {
+    max-width: 34rem; margin: 22px auto 0; text-align: left;
+    background: var(--g50); border: 1px solid var(--g200);
+    border-radius: 14px; padding: 14px 18px;
+  }
+  .verify summary { font-size: 13.5px; font-weight: 600; cursor: pointer; }
+  .verify p { color: var(--g600); font-size: 13px; margin-top: 8px; }
+  .verify code {
+    font-family: var(--mono); font-size: 12px;
+    background: var(--g100); padding: 2px 7px; border-radius: 6px;
+  }
+  .verify .sum {
+    font-family: var(--mono); font-size: 11px; color: var(--ink);
+    word-break: break-all; background: #fff;
+    border: 1px solid var(--g200); border-radius: 8px; padding: 8px 10px;
+  }
+
 .wrap { max-width: 46rem; margin: 0 auto; padding: 0 24px; }
   @media (prefers-reduced-motion: reduce) { .fiu { opacity: 1; animation: none; } }
 
