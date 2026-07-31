@@ -1,0 +1,1046 @@
+---
+import qr from "../assets/qr.svg?raw";
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Base title="simwire: real SMS from Node.js, powered by your phone" description="Pair your Android phone once, then send and receive real SMS from Node.js. No Twilio, no signup, no per-message fees.">
+<Nav animated>
+  <div class="nav-mid" slot="mid">
+    <a href="/#how">Product <svg class="ic" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></a>
+    <a href="/docs">Docs</a>
+    <a href="/#compare">Compare</a>
+    <a href="/download">Android app</a>
+  </div>
+  <Fragment slot="right">
+    <a class="login" href="https://github.com/machinal-agency/simwire">GitHub</a>
+    <a class="pill" href="/#how">Get started free</a>
+  </Fragment>
+</Nav>
+
+<header class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <div class="badge fiu" style="animation-delay: 0.2s">
+    <span class="sq"><svg class="mk" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h7l6 6v11a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3Z" fill="#0a0a0a"/><path d="M6.6 14.2h2.2l1.8-3.6 2.6 7 1.8-3.4h2.4" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17.4" cy="14.2" r="1.6" fill="#8b6bff"/></svg></span>
+    <span>Open source · MIT licensed · free forever</span>
+  </div>
+
+  <h1 class="fiu" style="animation-delay: 0.3s">
+    Real SMS. Zero Twilio.<br>
+    <span class="grad">Your Phone Powers It Up.</span>
+  </h1>
+
+  <p class="sub fiu" style="animation-delay: 0.4s">
+    simwire pairs your Android phone with your code. Send and receive real texts
+    from Node.js with no accounts, no per-message fees, and nothing in between.
+  </p>
+
+  <div class="fiu" style="animation-delay: 0.5s">
+    <a class="pill cta" href="#how">Start building free</a>
+    <div><button class="npm-line" type="button" data-copy="npm install simwire"><span><span class="d">$</span> npm install simwire</span><span class="hint">copy</span></button></div>
+  </div>
+
+  <div class="tabbar-hold fiu" style="animation-delay: 0.6s">
+    <div class="tabbar">
+      <div class="tabs-desktop" role="tablist" aria-label="Product demo steps">
+        <button class="tabbtn" data-tab="pair" aria-selected="true"><svg class="ic" viewBox="0 0 24 24"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>Pair</button>
+        <span class="tab-div"></span>
+        <button class="tabbtn" data-tab="send" aria-selected="false"><svg class="ic" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>Send</button>
+        <span class="tab-div"></span>
+        <button class="tabbtn" data-tab="receive" aria-selected="false"><svg class="ic" viewBox="0 0 24 24"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>Receive</button>
+        <span class="tab-div"></span>
+        <button class="tabbtn" data-tab="test" aria-selected="false"><svg class="ic" viewBox="0 0 24 24"><path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/><path d="M6.453 15h11.094"/><path d="M8.5 2h7"/></svg>Test</button>
+      </div>
+      <div class="tabs-mobile" role="tablist" aria-label="Product demo steps">
+        <button class="tabbtn" data-tab="pair" aria-selected="true"><svg class="ic" viewBox="0 0 24 24"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>Pair</button>
+        <button class="tabbtn" data-tab="send" aria-selected="false"><svg class="ic" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>Send</button>
+        <button class="tabbtn" data-tab="receive" aria-selected="false"><svg class="ic" viewBox="0 0 24 24"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>Receive</button>
+        <button class="tabbtn" data-tab="test" aria-selected="false"><svg class="ic" viewBox="0 0 24 24"><path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/><path d="M6.453 15h11.094"/><path d="M8.5 2h7"/></svg>Test</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo fiu" style="animation-delay: 0.7s">
+    <div class="scene" aria-hidden="true">
+      <div class="term">
+        <div class="term-bar"><b></b><b></b><b></b><span class="t">~/app</span></div>
+        <div class="term-body" id="term"></div>
+      </div>
+      <div class="link-lane">
+        <span class="lbl">Wi-Fi · WebSocket</span>
+        <div class="rail"></div>
+        <div class="pkt" id="pkt"></div>
+      </div>
+      <div class="phone-col">
+      <div class="phone">
+        <div class="antenna a1"></div>
+        <div class="antenna a2"></div>
+        <div class="side-btn vol"></div>
+        <div class="side-btn pwr"></div>
+        <div class="phone-inner">
+        <div class="screen">
+          <div class="glare"></div>
+          <div class="sbar">
+            <span>14:02</span>
+            <span class="cam"></span>
+            <span class="sic">
+              <svg viewBox="0 0 24 24"><path d="M12 20.5a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Zm-4.95-6.32a7 7 0 0 1 9.9 0l-1.7 1.7a4.6 4.6 0 0 0-6.5 0l-1.7-1.7Zm-3.18-3.18a11.5 11.5 0 0 1 16.26 0l-1.7 1.7a9.1 9.1 0 0 0-12.86 0l-1.7-1.7Z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M3 20h2.8v-5.6H3V20Zm5.07 0h2.8v-9.3h-2.8V20Zm5.06 0h2.8V7.2h-2.8V20Zm5.07 0H21V4h-2.8v16Z"/></svg>
+              <svg viewBox="0 0 24 24" style="width:16px"><rect x="2" y="7" width="17" height="10" rx="2.5" fill="none" stroke="#b9b9c4" stroke-width="1.6"/><rect x="4" y="9" width="10" height="6" rx="1" fill="#4ade80"/><path d="M21 10v4a1.6 1.6 0 0 0 0-4Z" fill="#b9b9c4"/></svg>
+            </span>
+          </div>
+          <div class="abar"><span class="an">simwire</span><span class="conn"><i></i>Connected</span></div>
+          <div class="msgs" id="msgs"></div>
+          <div class="pfoot"><span>SIM 1 · LTE</span><span>4650/ws</span></div>
+          <div class="gesture"></div>
+        </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="overlay on ov-anim" id="ov-pair">
+      <div class="card dlg">
+        <h4>Set up your phone</h4>
+        <div class="cap">Step 1 of 4. About two minutes.</div>
+        <div class="qr-mini"><Fragment set:html={qr} /></div>
+        <div class="prog"><i data-w="25%"></i></div>
+        <ul class="steps-list">
+          <li><span class="dot done"><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Install the simwire app</li>
+          <li><span class="dot now"></span>Scan the QR from your terminal</li>
+          <li><span class="dot todo"></span>LAN handshake, token stays local</li>
+          <li><span class="dot todo"></span>Send your first SMS</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="overlay ov-anim" id="ov-send">
+      <div class="card dlg">
+        <h4>Live delivery</h4>
+        <div class="cap">to +1 555 014 2834 · SIM 1</div>
+        <div class="prog"><i data-w="67%"></i></div>
+        <div class="metric"><span>Queued on device</span><b class="okc">0.1s ✓</b></div>
+        <div class="metric"><span>Sent by SIM</span><b class="okc">0.6s ✓</b></div>
+        <div class="metric"><span>Delivered to handset</span><b>waiting…</b></div>
+        <div class="metric"><span>Cost</span><b>$0.00</b></div>
+      </div>
+    </div>
+
+    <div class="overlay ov-anim" id="ov-receive">
+      <div class="card dlg">
+        <h4>Incoming stream</h4>
+        <div class="cap">Forwarded to localhost:3000/sms</div>
+        <div class="mono-row"><span class="frm">+1 555 019 0000 · "Your code is 428113"</span><span class="ok200">200</span></div>
+        <div class="mono-row"><span class="frm">ACME BANK · "You received $250.00"</span><span class="ok200">200</span></div>
+        <div class="mono-row"><span class="frm">ACME BANK · "You received $1,120.00"</span><span class="ok200">200</span></div>
+        <div class="cap" style="margin: 10px 0 0">3 events · no public webhook, no tunnel</div>
+      </div>
+    </div>
+
+    <div class="overlay ov-anim" id="ov-test">
+      <div class="card dlg center">
+        <div class="bigok"><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h4>Mock suite passed</h4>
+        <div class="cap">8/8 tests · 0.4s · no phone needed</div>
+        <div class="metric"><span>sms.outbox assertions</span><b class="okc">✓</b></div>
+        <div class="metric"><span>simulateIncoming()</span><b class="okc">✓</b></div>
+        <div class="metric"><span>forced failures</span><b class="okc">✓</b></div>
+        <button class="pill" type="button" data-copy="npm install simwire">Run it in your CI</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="logos fiu" style="animation-delay: 0.8s">
+    <div class="marquee">
+      <div class="marquee-inner">
+        <div class="logos-set">
+          <span class="lg lg-caps">NODE.JS</span>
+          <span class="lg lg-med">TypeScript</span>
+          <span class="lg lg-low">android</span>
+          <span class="lg lg-serif">npm</span>
+          <span class="lg"><span class="lg-grid"><b></b><b></b><b></b><b></b><b></b><b></b></span><span class="lg-med">WebSocket</span></span>
+          <span class="lg"><span class="lg-circ">vi</span><span class="lg-med">vitest</span></span>
+        </div>
+        <div class="logos-set" aria-hidden="true">
+          <span class="lg lg-caps">NODE.JS</span>
+          <span class="lg lg-med">TypeScript</span>
+          <span class="lg lg-low">android</span>
+          <span class="lg lg-serif">npm</span>
+          <span class="lg"><span class="lg-grid"><b></b><b></b><b></b><b></b><b></b><b></b></span><span class="lg-med">WebSocket</span></span>
+          <span class="lg"><span class="lg-circ">vi</span><span class="lg-med">vitest</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section style="padding-top: 0">
+  <div class="stats rv" id="stats">
+    <div class="stat"><div class="v">$0 <small>/ msg</small></div><div class="k">Your SIM, your plan. No per-message pricing.</div></div>
+    <div class="stat"><div class="v"><span data-count="2">0</span> min</div><div class="k">From npm install to a delivered SMS.</div></div>
+    <div class="stat"><div class="v">0</div><div class="k">Accounts, API keys, compliance forms.</div></div>
+    <div class="stat"><div class="v"><span data-count="100">0</span>%</div><div class="k">On your LAN. Nothing leaves your network.</div></div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="shead rv">
+    <span class="eyebrow">How it works</span>
+    <h2>Terminal to SIM in three steps</h2>
+    <p>No dashboard, no API keys, no billing form. Your terminal and your phone.</p>
+  </div>
+  <div class="how-grid">
+    <div class="how-visual rv">
+      <div class="how-term">
+        <div><span class="tp">$</span> npx simwire pair</div>
+        <span class="qr-box"><Fragment set:html={qr} /></span>
+        <div><span class="td">Scan with the simwire app…</span></div>
+        <div><span class="tk">✓</span> Paired with Pixel 8 <span class="td">(2 SIM slots)</span></div>
+        <div><span class="tk">✓</span> Token saved to ~/.simwire</div>
+      </div>
+    </div>
+    <div class="hsteps">
+      <div class="hstp rv">
+        <span class="n">1</span>
+        <div>
+          <h3>Pair your phone once</h3>
+          <p><a href="/download" style="text-decoration: underline; text-underline-offset: 3px;">Install the app</a>, run <code>npx simwire pair</code> and scan the QR. The token never leaves your two devices.</p>
+        </div>
+      </div>
+      <div class="hstp rv">
+        <span class="n">2</span>
+        <div>
+          <h3>Send from your code</h3>
+          <p>Call <code>sms.send()</code> and get real carrier statuses back: queued, sent, delivered. As promises or events.</p>
+        </div>
+      </div>
+      <div class="hstp rv">
+        <span class="n">3</span>
+        <div>
+          <h3>Receive on localhost</h3>
+          <p>Incoming SMS stream to your machine over the LAN, or straight into your local server with <code>simwire listen</code>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="shead rv">
+    <span class="eyebrow">Features</span>
+    <h2>Built for the way you actually develop</h2>
+    <p>Everything you keep rebuilding around SMS APIs, in the box.</p>
+  </div>
+  <div class="bento">
+    <div class="cell c-3 rv">
+      <h3>Receive on localhost</h3>
+      <p>Your phone pushes every incoming SMS to your dev machine over WebSocket. OTP flows become testable end-to-end, offline.</p>
+      <div class="viz mini-dark">
+        <div><span class="in">←</span> +15550190000&nbsp;&nbsp;"Your code is 428113"</div>
+        <div><span class="in">←</span> ACME BANK&nbsp;&nbsp;"You received $250.00"</div>
+        <div><span class="dd">→</span> POST localhost:3000/sms&nbsp;&nbsp;<span class="g">200</span> <span class="cur"></span></div>
+      </div>
+    </div>
+    <div class="cell c-3 rv">
+      <h3>Statuses that mean something</h3>
+      <p>Not just accepted by an API. Actually sent by the SIM, actually delivered to the handset. As events, or awaited.</p>
+      <div class="viz pill-line">
+        <span class="spill on">queued</span><span class="seg"></span><span class="spill on">sent</span><span class="seg"></span><span class="spill">delivered</span>
+      </div>
+    </div>
+    <div class="cell c-2 rv">
+      <h3>Mock device for CI</h3>
+      <p>Same API, no hardware. Outbox assertions, simulated incoming, forced failures.</p>
+      <div class="viz mini-dark"><span class="in">const</span> sms = mock();
+<span class="g">✓</span> 8 tests&nbsp;&nbsp;0.4s</div>
+    </div>
+    <div class="cell c-2 rv">
+      <h3>Dual-SIM routing</h3>
+      <p>Pick the SIM per message: OTPs on one carrier, alerts on the other.</p>
+      <div class="viz sims">
+        <div class="sim on"><span class="notch"></span>SIM 1<span class="nm">Work</span></div>
+        <div class="sim"><span class="notch"></span>SIM 2<span class="nm">Personal</span></div>
+      </div>
+    </div>
+    <div class="cell c-2 rv">
+      <h3>simwire doctor</h3>
+      <p>One command that says why it's not working, with the fix.</p>
+      <div class="viz checks">
+        <div><span class="ok">✓</span> paired · Pixel 8</div>
+        <div><span class="ok">✓</span> mDNS discovery</div>
+        <div><span class="bad">✗</span> battery optimization <span class="dim">→ fix</span></div>
+      </div>
+    </div>
+    <div class="cell c-3 rv">
+      <h3>Durable queue</h3>
+      <p>Messages persist on the phone before they're accepted. A killed app restarts and resumes exactly where it left off.</p>
+      <div class="viz qbars" aria-hidden="true"><b style="height:100%"></b><b style="height:72%"></b><b style="height:54%"></b><b style="height:38%"></b><b style="height:26%"></b><b style="height:16%"></b></div>
+    </div>
+    <div class="cell c-3 rv">
+      <h3>An open protocol, not a silo</h3>
+      <p>Plain WebSocket frames, documented pairing, mDNS discovery. Build your own client in an afternoon.</p>
+      <div class="viz"><span class="proto-chip">_simwire._tcp · :4650 · JSON frames</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="code">
+  <div class="shead rv">
+    <span class="eyebrow">The SDK</span>
+    <h2>An API that feels like it was always there</h2>
+    <p>TypeScript-first, promise-based, event-driven. One import for production, one for tests.</p>
+  </div>
+  <div class="codebox rv">
+    <div class="tabs2" role="tablist">
+      <button class="tab2" role="tab" aria-selected="true" data-p="p-send">send.ts</button>
+      <button class="tab2" role="tab" aria-selected="false" data-p="p-recv">receive.ts</button>
+      <button class="tab2" role="tab" aria-selected="false" data-p="p-test">otp.test.ts</button>
+    </div>
+    <div class="panel on" id="p-send"><pre><span class="k">import</span> &#123; connect &#125; <span class="k">from</span> <span class="s">"simwire"</span>;
+
+<span class="k">const</span> sms = <span class="k">await</span> connect();            <span class="c">// finds your phone on the LAN</span>
+
+<span class="k">const</span> msg = <span class="k">await</span> sms.send(&#123;
+  to: <span class="s">"+15550142834"</span>,
+  text: <span class="s">"Your code is 4821"</span>,
+&#125;);
+
+<span class="k">await</span> msg.waitForDelivery();            <span class="c">// real carrier status</span></pre></div>
+    <div class="panel" id="p-recv"><pre>sms.on(<span class="s">"message"</span>, (m) =&gt; &#123;
+  <span class="k">if</span> (m.text.startsWith(<span class="s">"BANK:"</span>)) reconcilePayment(m);
+&#125;);
+
+<span class="c">// or pipe straight into your local server:</span>
+<span class="c">// $ npx simwire listen --forward http://localhost:3000/sms</span></pre></div>
+    <div class="panel" id="p-test"><pre><span class="k">import</span> &#123; mock &#125; <span class="k">from</span> <span class="s">"simwire"</span>;
+
+<span class="k">const</span> sms = mock();                     <span class="c">// no phone, same API</span>
+
+<span class="k">await</span> sms.send(&#123; to: <span class="s">"+15550100000"</span>, text: <span class="s">"OTP: 1234"</span> &#125;);
+expect(sms.outbox).toHaveLength(<span class="k">1</span>);
+
+sms.simulateIncoming(&#123; from: <span class="s">"+15550100001"</span>, text: <span class="s">"STOP"</span> &#125;);</pre></div>
+  </div>
+</section>
+
+<section id="compare">
+  <div class="shead rv">
+    <span class="eyebrow">Compare</span>
+    <h2>Renting an SMS API can wait</h2>
+    <p>For development, testing and transactional volume, the phone in your pocket wins.</p>
+  </div>
+  <div class="cmp rv">
+    <div class="cmp-scroll">
+      <table>
+        <thead><tr><th></th><th class="me">simwire</th><th>Twilio &amp; friends</th></tr></thead>
+        <tbody>
+          <tr><td>Price per SMS</td><td class="me">Your plan, usually free</td><td>$0.008 to 0.05, plus number rental</td></tr>
+          <tr><td>Setup</td><td class="me"><span class="y">2 min</span>, one QR scan</td><td>Account, billing, compliance forms</td></tr>
+          <tr><td>Receive in local dev</td><td class="me"><span class="y">Native</span>, streams to localhost</td><td>Public webhook plus tunnel</td></tr>
+          <tr><td>Test story</td><td class="me"><span class="y">Built-in</span> mock device</td><td>Magic numbers, third-party mocks</td></tr>
+          <tr><td>Data path</td><td class="me">Stays on your LAN</td><td>Vendor cloud</td></tr>
+          <tr><td>Bulk campaigns</td><td><span class="n">No, by design</span></td><td><span class="y">Yes</span>, that's their job</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="honesty rv">
+    <span class="w">⚠</span>
+    <div><strong>Honest positioning:</strong> simwire is for development, testing and small transactional volume: OTPs, alerts, payment confirmations. Carriers throttle and ban SIMs that spam. If you need ten thousand messages an hour, rent a shortcode.</div>
+  </div>
+</section>
+
+<div class="final">
+  <div class="final-card rv">
+    <h2>Two minutes from <code>npm install</code><br>to a delivered text.</h2>
+    <p>Open source, MIT licensed, yours to keep.</p>
+    <div class="row">
+      <a class="pill pill-white" href="https://github.com/machinal-agency/simwire">View on GitHub</a>
+      <a class="pill pill-ghost" href="#how">Read the quickstart</a>
+    </div>
+  </div>
+</div>
+
+<Footer />
+</Base>
+
+<style is:global>
+@keyframes fadeInOverlay { from { opacity: 0; } to { opacity: 1; } }
+  .ov-anim { animation: fadeInOverlay 0.4s ease-out forwards; }
+  @keyframes fadeInDialog { from { opacity: 0; } to { opacity: 1; } }
+  .dlg { animation: fadeInDialog 0.5s ease-out forwards; transform: translate(-50%, -50%); }
+  .brand .mk { width: 23px; height: 23px; }
+  .foot-brand .wm { height: 14px; }
+  @media (min-width: 768px) { .nav-mid { display: flex; } }
+
+  /* ------------------------------------------------- hero */
+  .hero { padding: 96px 24px 128px; max-width: 80rem; margin: 0 auto; text-align: center; position: relative; }
+  .blob {
+    position: absolute; border-radius: 50%; filter: blur(85px);
+    pointer-events: none; z-index: -1;
+  }
+  .blob-1 { width: 420px; height: 420px; left: -80px; top: -40px; background: rgba(167, 146, 255, 0.32); animation: drift 11s ease-in-out infinite alternate; }
+  .blob-2 { width: 380px; height: 380px; right: -60px; top: 120px; background: rgba(146, 190, 255, 0.26); animation: drift 13s ease-in-out infinite alternate-reverse; }
+  @keyframes drift { from { transform: translateY(-16px); } to { transform: translateY(18px); } }
+
+  .badge { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 32px; }
+  .badge .sq {
+    width: 24px; height: 24px; border: 1px solid var(--g300); border-radius: 6px;
+    display: inline-flex; align-items: center; justify-content: center; background: #fff;
+  }
+  .badge .sq .mk { width: 14px; height: 14px; }
+  .badge span { font-size: 14px; font-weight: 500; color: var(--ink); }
+
+  h1 {
+    font-size: 60px; font-weight: 400; line-height: 1.1; letter-spacing: -0.025em;
+    margin-bottom: 20px; text-wrap: balance;
+  }
+  @media (min-width: 768px) { h1 { font-size: 72px; } }
+  @media (min-width: 1024px) { h1 { font-size: 80px; } }
+  h1 .grad {
+    background: linear-gradient(90deg, #000 0%, #6b7280 55%, #9ca3af 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+
+  .sub {
+    font-size: 18px; color: var(--g600);
+    max-width: 42rem; margin: 0 auto 32px; text-wrap: balance;
+  }
+  @media (min-width: 768px) { .sub { font-size: 20px; } }
+
+  .cta { padding: 12px 32px; font-size: 16px; margin-bottom: 18px; }
+  .npm-line {
+    font-family: var(--mono); font-size: 13.5px; color: var(--g500);
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 48px; cursor: pointer; border: none; background: none;
+    transition: color 0.15s;
+  }
+  .npm-line:hover { color: var(--ink); }
+  .npm-line .d { color: var(--violet); }
+  .npm-line .hint { font-size: 11px; color: var(--g400); border: 1px solid var(--g200); border-radius: 5px; padding: 2px 7px; }
+
+  /* tab bar */
+  .tabbar-hold { display: flex; justify-content: center; margin-bottom: 48px; }
+  .tabbar { background: var(--g100); border-radius: 12px; padding: 4px; }
+  .tabs-desktop { display: none; align-items: center; }
+  .tabs-mobile { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+  @media (min-width: 768px) {
+    .tabs-desktop { display: flex; }
+    .tabs-mobile { display: none; }
+  }
+  .tabbtn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 9px 18px; border-radius: 9px; border: none; background: none;
+    font-size: 14px; font-weight: 500; color: var(--g600); cursor: pointer;
+    transition: color 0.15s, background 0.15s, box-shadow 0.15s;
+    white-space: nowrap;
+  }
+  .tabbtn .ic { width: 15px; height: 15px; }
+  .tabbtn[aria-selected="true"] { background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.09); }
+  .tab-div { width: 1px; height: 20px; background: var(--g300); margin: 0 4px; }
+
+  /* ------------------------------------------------- demo area */
+  .demo {
+    position: relative; border-radius: 24px; overflow: hidden;
+    height: 400px; background: var(--dark);
+  }
+  @media (min-width: 768px) { .demo { height: 500px; } }
+  .demo::after {
+    content: ""; position: absolute; inset: auto 0 0 0; height: 52px; z-index: 2;
+    background: linear-gradient(180deg, rgba(16, 16, 20, 0), rgba(10, 10, 14, 0.55));
+    pointer-events: none;
+  }
+
+  .scene {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(520px 300px at 18% 8%, rgba(109, 77, 250, 0.16), transparent 65%),
+      linear-gradient(135deg, #16131f 0%, var(--dark) 55%, #0c0c10 100%);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 104px 258px;
+    align-items: center;
+    padding: 28px clamp(18px, 3.4vw, 40px);
+  }
+  @media (max-width: 767px) {
+    .scene { grid-template-columns: 1fr; }
+    .link-lane, .phone-col { display: none; }
+  }
+
+  .term {
+    background: rgba(0, 0, 0, 0.38); border: 1px solid var(--dark-line);
+    border-radius: 12px; overflow: hidden;
+    font-family: var(--mono); font-size: 12.5px; line-height: 1.85;
+    color: var(--dk-text);
+    text-align: left;
+  }
+  .term-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; border-bottom: 1px solid var(--dark-line); }
+  .term-bar b { width: 10px; height: 10px; border-radius: 50%; background: #26262e; }
+  .term-bar .t { flex: 1; text-align: center; color: var(--dk-text3); font-size: 11px; font-weight: 400; }
+  .term-body { padding: 14px 18px; height: 296px; overflow: hidden; white-space: pre-wrap; word-break: break-word; }
+  @media (max-width: 767px) { .term-body { height: 268px; } }
+  .tp { color: #a999ff; }
+  .tk { color: #4ade80; }
+  .td { color: var(--dk-text3); }
+  .ti { color: var(--dk-text2); }
+
+  .link-lane { position: relative; height: 80px; }
+  .link-lane .rail {
+    position: absolute; top: 50%; left: -4px; right: -4px; height: 1px;
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,0.22) 0 5px, transparent 5px 11px);
+  }
+  .link-lane .lbl {
+    position: absolute; top: calc(50% - 24px); width: 100%; text-align: center;
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em;
+    color: var(--dk-text3); text-transform: uppercase;
+  }
+  .pkt {
+    position: absolute; top: 50%; left: 0;
+    width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%;
+    background: #a999ff; box-shadow: 0 0 12px rgba(150, 120, 255, 0.95);
+    opacity: 0;
+  }
+  .pkt.go { animation: fly 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+  .pkt.back { animation: flyback 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+  @keyframes fly { 0% { opacity: 0; transform: translateX(0); } 12% { opacity: 1; } 88% { opacity: 1; } 100% { opacity: 0; transform: translateX(96px); } }
+  @keyframes flyback { 0% { opacity: 0; transform: translateX(96px); } 12% { opacity: 1; } 88% { opacity: 1; } 100% { opacity: 0; transform: translateX(0); } }
+
+  /* realistic phone: true 19.5:9 proportions, metal frame, slight 3D tilt,
+     bottom edge cropped by the demo card like a product shot */
+  .phone-col {
+    align-self: end;
+    margin-bottom: -78px;
+    perspective: 1400px;
+  }
+  .phone {
+    position: relative;
+    width: 234px;
+    border-radius: 47px;
+    padding: 3px;
+    background:
+      linear-gradient(115deg, #6a6a76 0%, #23232b 18%, #101015 42%, #16161d 62%, #3c3c46 88%, #7c7c88 100%);
+    transform: rotateY(-9deg) rotateX(2deg);
+    box-shadow:
+      -22px 40px 60px rgba(0, 0, 0, 0.52),
+      -4px 10px 18px rgba(0, 0, 0, 0.45);
+  }
+  .phone::before {
+    content: ""; position: absolute; inset: 0; border-radius: 47px;
+    padding: 1px; pointer-events: none;
+    background: linear-gradient(125deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.05) 30%, transparent 55%, rgba(255, 255, 255, 0.18) 92%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  .phone-inner {
+    background: #020204;
+    border-radius: 44px;
+    padding: 9px;
+  }
+  .antenna { position: absolute; background: #55555f; z-index: 1; }
+  .antenna.a1 { top: 84px; left: -1px; width: 2.5px; height: 7px; border-radius: 2px; }
+  .antenna.a2 { top: 84px; right: -1px; width: 2.5px; height: 7px; border-radius: 2px; }
+  .side-btn { position: absolute; right: -6.5px; width: 4px; border-radius: 2.5px; background: linear-gradient(90deg, #585862, #26262e 70%); box-shadow: inset 0 1px 1px rgba(255,255,255,0.25); }
+  .side-btn.vol { top: 116px; height: 62px; }
+  .side-btn.pwr { top: 194px; height: 40px; }
+  .screen {
+    display: flex; flex-direction: column;
+    height: 474px;
+    position: relative;
+    color: var(--dk-text); text-align: left;
+    background: #0b0b0f; border-radius: 36px; overflow: hidden;
+  }
+  .glare {
+    position: absolute; inset: 0; z-index: 6; pointer-events: none;
+    border-radius: 36px;
+    background:
+      linear-gradient(160deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.03) 20%, transparent 34%),
+      linear-gradient(200deg, transparent 78%, rgba(255, 255, 255, 0.04) 100%);
+  }
+  .sbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 11px 20px 4px;
+    font-family: var(--mono); font-size: 10.5px; color: #b9b9c4;
+  }
+  .sbar .cam {
+    position: absolute; top: 11px; left: 50%; transform: translateX(-50%);
+    width: 11px; height: 11px; border-radius: 50%;
+    background: radial-gradient(circle at 36% 34%, #2a2a35 12%, #000 46%);
+    box-shadow: 0 0 0 2.5px #060609;
+  }
+  .sbar .sic { display: inline-flex; align-items: center; gap: 4px; }
+  .sbar svg { width: 11px; height: 11px; fill: #b9b9c4; }
+  .abar { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px 9px; border-bottom: 1px solid var(--dark-line); }
+  .abar .an { font-family: var(--mono); font-size: 13px; font-weight: 600; letter-spacing: -0.02em; }
+  .conn { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--dk-text2); font-family: var(--mono); }
+  .conn i { width: 5px; height: 5px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 6px rgba(74, 222, 128, 0.8); }
+  .msgs { flex: 1; padding: 12px; display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+  .bub {
+    max-width: 86%; padding: 8px 12px; border-radius: 13px;
+    font-size: 11.5px; line-height: 1.45;
+    opacity: 0; transform: translateY(8px) scale(0.97);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .bub.show { opacity: 1; transform: none; }
+  .bub .who { font-family: var(--mono); font-size: 9px; color: var(--dk-text3); display: block; margin-bottom: 3px; }
+  .bub.out { align-self: flex-end; background: linear-gradient(135deg, #6d4dfa, #8b6bff); color: #fff; border-bottom-right-radius: 4px; }
+  .bub.out .who { color: rgba(255, 255, 255, 0.65); }
+  .bub.in { align-self: flex-start; background: #1c1c24; border: 1px solid var(--dark-line); border-bottom-left-radius: 4px; }
+  .bub .st { display: block; font-family: var(--mono); font-size: 8.5px; margin-top: 4px; color: rgba(255, 255, 255, 0.72); }
+  .pfoot { padding: 8px 16px 16px; border-top: 1px solid var(--dark-line); font-family: var(--mono); font-size: 9.5px; color: var(--dk-text3); display: flex; justify-content: space-between; }
+  .gesture {
+    position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%);
+    width: 84px; height: 4px; border-radius: 3px; background: rgba(255, 255, 255, 0.30);
+    z-index: 7;
+  }
+
+  /* overlays */
+  .overlay { position: absolute; inset: 0; background: rgba(8, 8, 12, 0.44); display: none; z-index: 8; }
+  .overlay.on { display: block; }
+  .card {
+    position: absolute; top: 50%; left: 50%;
+    width: 92%; max-width: 340px;
+    background: #fff; border-radius: 16px;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+    padding: 22px 22px 20px; text-align: left;
+  }
+  .card h4 { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 2px; }
+  .card .cap { font-size: 12.5px; color: var(--g500); margin-bottom: 14px; }
+  .prog { height: 6px; border-radius: 99px; background: var(--g100); overflow: hidden; margin-bottom: 14px; }
+  .prog i { display: block; height: 100%; width: 0; border-radius: 99px; background: var(--violet); transition: width 0.9s cubic-bezier(0.3, 0, 0.2, 1); }
+  .steps-list { display: flex; flex-direction: column; gap: 9px; font-size: 13px; color: var(--g700); }
+  .steps-list li { list-style: none; display: flex; align-items: center; gap: 10px; }
+  .dot {
+    width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .dot.done { background: var(--violet-soft); color: var(--violet); }
+  .dot.done .ic { width: 11px; height: 11px; stroke-width: 3; }
+  .dot.now { border: 2px solid var(--violet); }
+  .dot.now::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--violet); }
+  .dot.todo { border: 2px solid var(--g200); }
+  .qr-mini { display: flex; justify-content: center; margin-bottom: 14px; }
+  .qr-mini svg { width: 92px; height: 92px; border-radius: 8px; box-shadow: 0 0 0 6px #fff, 0 0 0 7px var(--g200); }
+  .metric { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--g700); padding: 7px 0; border-bottom: 1px solid var(--g100); }
+  .metric:last-child { border-bottom: none; }
+  .metric b { font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .metric b.okc { color: var(--green); }
+  .bigok {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--green-soft); color: var(--green);
+    display: flex; align-items: center; justify-content: center;
+    margin: 4px auto 12px;
+  }
+  .bigok .ic { width: 26px; height: 26px; stroke-width: 2.5; }
+  .center { text-align: center; }
+  .card .mono-row {
+    font-family: var(--mono); font-size: 11.5px; color: var(--g600);
+    background: var(--g50); border: 1px solid var(--g100);
+    border-radius: 9px; padding: 8px 11px; margin-bottom: 8px;
+    display: flex; justify-content: space-between; gap: 10px; align-items: center;
+    overflow: hidden; white-space: nowrap;
+  }
+  .mono-row .frm { overflow: hidden; text-overflow: ellipsis; }
+  .mono-row .ok200 { color: var(--green); font-weight: 600; }
+  .card .pill { width: 100%; margin-top: 12px; padding: 10px 0; font-size: 13.5px; }
+
+  /* ------------------------------------------------- logos marquee */
+  .logos { margin-top: 96px; }
+  .marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+  }
+  .marquee-inner {
+    display: flex; align-items: center; gap: 56px;
+    width: max-content;
+    animation: scrollX 26s linear infinite;
+  }
+  .marquee:hover .marquee-inner { animation-play-state: paused; }
+  @keyframes scrollX { to { transform: translateX(-50%); } }
+  .logos-set { display: flex; align-items: center; gap: 56px; color: var(--g400); }
+  .lg { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+  .lg-caps { font-size: 13px; font-weight: 700; letter-spacing: 0.18em; }
+  .lg-med { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+  .lg-low { font-size: 15px; font-weight: 700; letter-spacing: -0.02em; }
+  .lg-serif { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 17px; font-weight: 600; }
+  .lg-grid { display: inline-grid; grid-template-columns: repeat(3, 3px); gap: 2px; }
+  .lg-grid b { width: 3px; height: 3px; border-radius: 50%; background: var(--g400); }
+  .lg-circ {
+    width: 22px; height: 22px; border: 1.5px solid var(--g400); border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.03em;
+  }
+
+  /* ------------------------------------------------- shared sections */
+  section { padding: 112px 24px 0; max-width: 80rem; margin: 0 auto; }
+  .shead { text-align: center; max-width: 44rem; margin: 0 auto 56px; }
+  .eyebrow {
+    display: inline-block; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--g500);
+    background: var(--g100); border-radius: 999px; padding: 6px 14px;
+    margin-bottom: 18px;
+  }
+  .shead h2 { font-size: clamp(30px, 4vw, 44px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.12; text-wrap: balance; margin-bottom: 12px; }
+  .shead p { color: var(--g600); font-size: 17px; }
+
+  /* stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--g200); }
+  .stat { padding: 28px 24px 0; }
+  .stat .v { font-size: 34px; font-weight: 600; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+  .stat .v small { font-size: 16px; font-weight: 500; color: var(--g400); }
+  .stat .k { color: var(--g600); font-size: 14px; margin-top: 4px; }
+  @media (max-width: 860px) { .stats { grid-template-columns: 1fr 1fr; row-gap: 26px; } }
+
+  /* how */
+  .how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  @media (max-width: 900px) { .how-grid { grid-template-columns: 1fr; } }
+  .how-visual { background: var(--g50); border: 1px solid var(--g200); border-radius: 24px; padding: 18px; }
+  .how-term {
+    background: var(--dark); border-radius: 14px;
+    font-family: var(--mono); font-size: 12.5px; line-height: 1.95;
+    color: var(--dk-text); padding: 20px 22px; overflow-x: auto;
+  }
+  .qr-box {
+    display: inline-block; background: #fff; border-radius: 10px;
+    padding: 10px; margin: 12px 0; line-height: 0;
+  }
+  .qr-box svg { width: 118px; height: 118px; display: block; }
+  .hsteps { display: flex; flex-direction: column; gap: 12px; }
+  .hstp {
+    display: flex; gap: 16px; align-items: flex-start;
+    background: var(--g50); border: 1px solid var(--g200);
+    border-radius: 18px; padding: 20px 22px;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  }
+  .hstp:hover { border-color: var(--g300); background: #fff; transform: translateX(4px); }
+  .hstp .n {
+    flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--ink); color: #fff;
+    font-size: 12.5px; font-weight: 600;
+  }
+  .hstp h3 { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 3px; }
+  .hstp p { color: var(--g600); font-size: 14px; }
+  .hstp code { font-family: var(--mono); font-size: 12.5px; background: var(--g100); color: var(--ink); padding: 1px 7px; border-radius: 6px; white-space: nowrap; }
+
+  /* bento */
+  .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+  .cell {
+    background: var(--g50); border: 1px solid var(--g200);
+    border-radius: 20px; padding: 26px;
+    display: flex; flex-direction: column; gap: 8px; min-width: 0;
+    transition: background 0.2s, border-color 0.2s, transform 0.25s, box-shadow 0.25s;
+  }
+  .cell:hover { background: #fff; border-color: var(--g300); transform: translateY(-3px); box-shadow: 0 14px 34px rgba(18, 16, 42, 0.07); }
+  .cell h3 { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
+  .cell p { color: var(--g600); font-size: 14px; }
+  .cell .viz { margin-top: auto; padding-top: 20px; }
+  .c-3 { grid-column: span 3; }
+  .c-2 { grid-column: span 2; }
+  @media (max-width: 880px) { .c-3, .c-2 { grid-column: span 6; } }
+
+  .mini-dark {
+    background: var(--dark); border-radius: 12px; padding: 13px 16px;
+    font-family: var(--mono); font-size: 11.5px; line-height: 2;
+    color: var(--dk-text2); overflow-x: auto;
+  }
+  .mini-dark .in { color: #a999ff; }
+  .mini-dark .g { color: #4ade80; }
+  .mini-dark .dd { color: var(--dk-text3); }
+  .mini-dark .cur { display: inline-block; width: 6px; height: 12px; background: #a999ff; vertical-align: -1px; animation: blink 1.1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .pill-line { display: flex; align-items: center; }
+  .spill {
+    font-family: var(--mono); font-size: 10.5px;
+    border: 1px solid var(--g200); color: var(--g500); background: #fff;
+    border-radius: 999px; padding: 4px 11px; white-space: nowrap;
+  }
+  .spill.on { color: var(--green); border-color: rgba(22, 163, 74, 0.35); background: var(--green-soft); }
+  .pill-line .seg { flex: 1; height: 2px; min-width: 12px; background: var(--g200); position: relative; overflow: hidden; border-radius: 2px; }
+  .pill-line .seg::after {
+    content: ""; position: absolute; inset: 0; transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, var(--violet), transparent);
+    animation: segflow 2.6s ease-in-out infinite;
+  }
+  .pill-line .seg + .spill + .seg::after { animation-delay: 1.3s; }
+  @keyframes segflow { 0% { transform: translateX(-100%); } 55%, 100% { transform: translateX(100%); } }
+
+  .sims { display: flex; gap: 10px; }
+  .sim { flex: 1; border: 1px solid var(--g200); background: #fff; border-radius: 12px; padding: 12px 14px; font-family: var(--mono); font-size: 10.5px; color: var(--g400); position: relative; }
+  .sim .nm { display: block; font-size: 12.5px; color: var(--g600); margin-top: 2px; font-weight: 600; font-family: var(--sans); }
+  .sim.on { border-color: var(--violet); background: var(--violet-soft); }
+  .sim.on .nm { color: var(--violet); }
+  .sim .notch { position: absolute; top: 0; right: 14px; width: 14px; height: 3px; border-radius: 0 0 3px 3px; background: var(--g200); }
+  .sim.on .notch { background: var(--violet); }
+
+  .checks { font-family: var(--mono); font-size: 11.5px; line-height: 2.1; color: var(--g600); }
+  .checks .ok { color: var(--green); }
+  .checks .bad { color: var(--amber); }
+  .checks .dim { color: var(--g400); }
+
+  .qbars { display: flex; align-items: flex-end; gap: 5px; height: 34px; }
+  .qbars b { flex: 1; background: linear-gradient(180deg, var(--violet) -40%, var(--violet-soft) 120%); border-radius: 4px 4px 0 0; }
+
+  .proto-chip {
+    font-family: var(--mono); font-size: 11.5px; color: var(--g600);
+    border: 1px dashed var(--g300); background: #fff;
+    border-radius: 9px; padding: 9px 13px; display: inline-block;
+  }
+
+  /* code */
+  .codebox { border-radius: 24px; overflow: hidden; background: var(--dark); }
+  .tabs2 { display: flex; border-bottom: 1px solid var(--dark-line); padding: 0 10px; background: #16161c; }
+  .tab2 {
+    font-family: var(--mono); font-size: 12.5px; color: var(--dk-text3);
+    background: none; border: none; border-bottom: 2px solid transparent;
+    padding: 14px 16px; cursor: pointer; margin-bottom: -1px;
+    transition: color 0.15s;
+  }
+  .tab2:hover { color: var(--dk-text2); }
+  .tab2[aria-selected="true"] { color: #fff; border-bottom-color: var(--violet); }
+  .panel { display: none; padding: 26px 28px; font-family: var(--mono); font-size: 13px; line-height: 1.9; overflow-x: auto; text-align: left; }
+  .panel.on { display: block; }
+  .panel pre { color: #d6d6de; }
+  .panel .k { color: #a999ff; }
+  .panel .s { color: #4ade80; }
+  .panel .c { color: var(--dk-text3); }
+
+  /* compare */
+  .cmp { background: #fff; border: 1px solid var(--g200); border-radius: 20px; overflow: hidden; }
+  .cmp-scroll { overflow-x: auto; }
+  .cmp table { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 640px; }
+  .cmp th, .cmp td { text-align: left; padding: 15px 24px; border-top: 1px solid var(--g100); }
+  .cmp thead th {
+    border-top: none; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    font-weight: 600; color: var(--g500); background: var(--g50);
+    padding-top: 16px; padding-bottom: 14px;
+  }
+  .cmp thead th.me { color: var(--ink); }
+  .cmp td:first-child { color: var(--g500); font-size: 13.5px; }
+  .cmp td.me { color: var(--ink); font-weight: 550; background: var(--g50); }
+  .cmp td { color: var(--g600); }
+  .cmp .y { color: var(--green); font-weight: 600; }
+  .cmp .n { color: var(--g400); }
+
+  .honesty {
+    margin: 20px auto 0; display: flex; gap: 14px; align-items: flex-start;
+    color: var(--g600); font-size: 14px; max-width: 78ch;
+    background: #fffbeb; border: 1px solid #fde9c0;
+    border-radius: 16px; padding: 18px 20px; text-align: left;
+  }
+  .honesty .w { color: var(--amber); font-size: 14px; margin-top: 1px; }
+  .honesty strong { color: var(--ink); font-weight: 600; }
+
+  /* final */
+  .final { padding: 120px 24px 100px; max-width: 80rem; margin: 0 auto; }
+  .final-card {
+    background: var(--ink); color: #fff; border-radius: 32px;
+    text-align: center; padding: clamp(56px, 8vw, 96px) 28px;
+    position: relative; overflow: hidden;
+  }
+  .final-card::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(480px 240px at 80% 0%, rgba(109, 77, 250, 0.28), transparent 70%);
+  }
+  .final-card h2 {
+    font-size: clamp(32px, 4.6vw, 52px); font-weight: 400;
+    letter-spacing: -0.03em; line-height: 1.08; text-wrap: balance;
+    margin-bottom: 14px; position: relative;
+  }
+  .final-card h2 code { font-family: var(--mono); font-size: 0.85em; }
+  .final-card p { color: rgba(255, 255, 255, 0.65); margin-bottom: 34px; position: relative; }
+  .final-card .row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; }
+  .pill-white { background: #fff; color: var(--ink); }
+  .pill-white:hover { background: var(--g100); }
+  .pill-ghost { background: transparent; border: 1px solid rgba(255, 255, 255, 0.35); color: #fff; }
+  .pill-ghost:hover { border-color: #fff; background: transparent; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .fiu { opacity: 1; animation: none; }
+    .ov-anim, .dlg { animation: none; }
+    .rv { opacity: 1; transform: none; transition: none; }
+    .pkt { display: none; }
+    .bub { opacity: 1; transform: none; transition: none; }
+    .mini-dark .cur { animation: none; }
+    .pill-line .seg::after { animation: none; transform: none; opacity: 0.3; }
+    .blob { animation: none; }
+    .marquee-inner { animation: none; flex-wrap: wrap; width: auto; justify-content: center; }
+    .marquee { mask-image: none; -webkit-mask-image: none; }
+    .prog i { transition: none; }
+  }
+</style>
+
+<script is:inline>
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  for (const btn of document.querySelectorAll("[data-copy]")) {
+    btn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copy);
+        const hint = btn.querySelector(".hint");
+        if (hint) { hint.textContent = "copied"; setTimeout(() => (hint.textContent = "copy"), 1500); }
+      } catch { /* clipboard unavailable */ }
+    });
+  }
+
+  const io = new IntersectionObserver((es) => {
+    for (const e of es) if (e.isIntersecting) { e.target.classList.add("vis"); io.unobserve(e.target); }
+  }, { threshold: 0.1 });
+  for (const el of document.querySelectorAll(".rv")) io.observe(el);
+
+  // stats count-up
+  function countUp(el) {
+    const target = Number(el.dataset.count);
+    if (reduced) { el.textContent = target; return; }
+    const t0 = performance.now();
+    const dur = 900;
+    (function frame(t) {
+      const p = Math.min(1, (t - t0) / dur);
+      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(frame);
+    })(t0);
+  }
+  const statsEl = document.getElementById("stats");
+  if (statsEl) {
+    const sio = new IntersectionObserver((es) => {
+      for (const e of es) {
+        if (!e.isIntersecting) continue;
+        for (const el of e.target.querySelectorAll("[data-count]")) countUp(el);
+        sio.unobserve(e.target);
+      }
+    }, { threshold: 0.4 });
+    sio.observe(statsEl);
+  }
+
+  for (const tab of document.querySelectorAll(".tab2")) {
+    tab.addEventListener("click", () => {
+      for (const t of document.querySelectorAll(".tab2")) t.setAttribute("aria-selected", t === tab ? "true" : "false");
+      for (const p of document.querySelectorAll(".panel")) p.classList.toggle("on", p.id === tab.dataset.p);
+    });
+  }
+
+  // ------- demo tabs: auto-cycle every 4s -------
+  const TABS = ["pair", "send", "receive", "test"];
+  let current = "pair";
+  let cycle = null;
+
+  function setTab(name) {
+    current = name;
+    for (const b of document.querySelectorAll(".tabbtn")) {
+      b.setAttribute("aria-selected", b.dataset.tab === name ? "true" : "false");
+    }
+    for (const ov of document.querySelectorAll(".overlay")) {
+      const on = ov.id === "ov-" + name;
+      const bar = ov.querySelector(".prog i");
+      if (on && !ov.classList.contains("on")) {
+        ov.classList.add("on");
+        if (!reduced) {
+          const dlg = ov.querySelector(".dlg");
+          ov.style.animation = "none";
+          if (dlg) dlg.style.animation = "none";
+          void ov.offsetWidth;
+          ov.style.animation = "";
+          if (dlg) dlg.style.animation = "";
+        }
+        if (bar) requestAnimationFrame(() => { bar.style.width = bar.dataset.w; });
+      } else if (!on) {
+        ov.classList.remove("on");
+        if (bar) bar.style.width = "0";
+      }
+    }
+  }
+  function startCycle() {
+    clearInterval(cycle);
+    cycle = setInterval(() => {
+      setTab(TABS[(TABS.indexOf(current) + 1) % TABS.length]);
+    }, 4000);
+  }
+  for (const b of document.querySelectorAll(".tabbtn")) {
+    b.addEventListener("click", () => { setTab(b.dataset.tab); startCycle(); });
+  }
+  const firstBar = document.querySelector("#ov-pair .prog i");
+  if (firstBar) requestAnimationFrame(() => { firstBar.style.width = firstBar.dataset.w; });
+  startCycle();
+
+  // ------- background scene -------
+  const term = document.getElementById("term");
+  const msgs = document.getElementById("msgs");
+  const pkt = document.getElementById("pkt");
+
+  function tline(html) {
+    const el = document.createElement("div");
+    el.innerHTML = html;
+    term.appendChild(el);
+    return el;
+  }
+  async function ttype(cmd) {
+    const el = tline('<span class="tp">$ </span>');
+    const txt = document.createTextNode("");
+    el.appendChild(txt);
+    for (const ch of cmd) { txt.textContent += ch; await wait(24); }
+    await wait(320);
+  }
+  function bubble(kind, who, text, status) {
+    const el = document.createElement("div");
+    el.className = "bub " + kind;
+    el.innerHTML = '<span class="who"></span><span class="txt"></span>' + (status ? '<span class="st"></span>' : "");
+    el.querySelector(".who").textContent = who;
+    el.querySelector(".txt").textContent = text;
+    if (status) el.querySelector(".st").textContent = status;
+    msgs.appendChild(el);
+    requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("show")));
+    return el;
+  }
+  function flyTo(dir) {
+    pkt.classList.remove("go", "back");
+    void pkt.offsetWidth;
+    pkt.classList.add(dir);
+  }
+  const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+
+  async function scene() {
+    term.textContent = "";
+    msgs.textContent = "";
+    await wait(500);
+    await ttype("node send-otp.js");
+    tline('<span class="td">simwire · connected to Pixel 8 (LAN)</span>');
+    await wait(600);
+    flyTo("go");
+    await wait(900);
+    const out = bubble("out", "to +1 555 014 2834", "Your code is 4821", "queued");
+    await wait(700);
+    out.querySelector(".st").textContent = "sent · SIM 1";
+    tline('<span class="tk">✓</span> sent <span class="td">0.6s</span>');
+    await wait(1000);
+    out.querySelector(".st").textContent = "delivered ✓";
+    tline('<span class="tk">✓</span> delivered <span class="td">1.8s</span>');
+    await wait(1700);
+    bubble("in", "ACME BANK", "BANK: You received $250.00 from ACME Corp");
+    await wait(800);
+    flyTo("back");
+    await wait(900);
+    tline('<span class="ti">← sms:received  ACME BANK  ' + esc('"BANK: You received…"') + "</span>");
+    await wait(500);
+    tline('<span class="td">→ POST localhost:3000/sms  </span><span class="tk">200</span>');
+    await wait(4200);
+    scene();
+  }
+  function sceneStatic() {
+    term.innerHTML = "";
+    tline('<span class="tp">$ </span>node send-otp.js');
+    tline('<span class="td">simwire · connected to Pixel 8 (LAN)</span>');
+    tline('<span class="tk">✓</span> sent <span class="td">0.6s</span>');
+    tline('<span class="tk">✓</span> delivered <span class="td">1.8s</span>');
+    tline('<span class="ti">← sms:received  ACME BANK  "BANK: You received…"</span>');
+    tline('<span class="td">→ POST localhost:3000/sms  </span><span class="tk">200</span>');
+    bubble("out", "to +1 555 014 2834", "Your code is 4821", "delivered ✓");
+    bubble("in", "ACME BANK", "BANK: You received $250.00 from ACME Corp");
+  }
+  if (reduced) sceneStatic(); else scene();
+</script>

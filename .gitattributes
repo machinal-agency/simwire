@@ -1,9 +1,3 @@
-# Rendered by apps/web/build.py from the *.template.html sources. Committed so
-# the site deploys by copying files, but they are build output: keep them out of
-# the language stats and collapsed in diffs.
-apps/web/index.html    linguist-generated=true
-apps/web/docs.html     linguist-generated=true
-apps/web/download.html linguist-generated=true
-
-# Base64 font payloads inlined at build time.
-apps/web/assets/*.b64  linguist-generated=true
+# Base64 font payloads and other generated assets stay out of the language
+# stats; the site itself is now built by Astro, so nothing else is generated.
+apps/web/public/fonts/*.woff2 binary

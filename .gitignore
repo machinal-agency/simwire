@@ -13,3 +13,7 @@ apps/android/app/build/
 apps/web/*.apk
 apps/android/keystore.properties
 apps/android/*.keystore
+
+# Astro
+apps/web/dist/
+apps/web/.astro/

@@ -1,0 +1,33 @@
+---
+import wordmark from "../assets/wordmark.svg?raw";
+
+interface Props {
+  /** Height of the wordmark in pixels; the mark scales with it. */
+  height?: number;
+  href?: string | null;
+}
+
+const { height = 16, href = "/" } = Astro.props;
+const Tag = href ? "a" : "div";
+---
+
+<Tag class="brand" {...href ? { href } : {}}>
+  <svg class="mk" viewBox="0 0 24 24" aria-hidden="true">
+    <path
+      d="M7 2h7l6 6v11a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3Z"
+      fill="#0a0a0a"></path>
+    <path
+      d="M6.6 14.2h2.2l1.8-3.6 2.6 7 1.8-3.4h2.4"
+      fill="none"
+      stroke="#fff"
+      stroke-width="1.9"
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
+    <circle cx="17.4" cy="14.2" r="1.6" fill="#8b6bff"></circle>
+  </svg>
+  <Fragment set:html={wordmark} />
+</Tag>
+
+<style define:vars={{ wordmarkHeight: `${height}px` }}>
+  .brand :global(.wm) { height: var(--wordmarkHeight); }
+</style>

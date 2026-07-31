@@ -36,7 +36,7 @@ expect(sms.outbox).toHaveLength(1);
 | `packages/sdk`       | The `simwire` npm package: TypeScript SDK + CLI (`pair`, `send`, `listen`, `doctor`) |
 | `packages/protocol`  | Shared wire protocol types + [PROTOCOL.md](packages/protocol/PROTOCOL.md) |
 | `apps/android`       | Android gateway app, phase 1 code complete ([build guide](apps/android/README.md), [architecture](apps/android/ARCHITECTURE.md)) |
-| `apps/web`           | Landing page for simwire.machinal.agency                          |
+| `apps/web`           | Astro site behind [simwire.machinal.agency](https://simwire.machinal.agency): landing, docs and app download |
 
 ## Development
 

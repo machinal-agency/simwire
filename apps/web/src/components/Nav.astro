@@ -1,0 +1,38 @@
+---
+import Wordmark from "./Wordmark.astro";
+
+interface Props {
+  /** Docs pages keep the bar pinned while scrolling long content. */
+  sticky?: boolean;
+  /** Landing page staggers its entrance with the rest of the hero. */
+  animated?: boolean;
+}
+
+const { sticky = false, animated = false } = Astro.props;
+---
+
+<nav class:list={[{ topnav: sticky, fiu: animated }]} style={animated ? "animation-delay: 0.05s" : undefined}>
+  <div class="nav-in">
+    <Wordmark />
+    <slot name="mid" />
+    <div class="nav-right"><slot name="right" /></div>
+  </div>
+</nav>
+
+<style>
+  .topnav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--g200);
+  }
+  /* The docs bar sits slightly tighter than the marketing one. */
+  .topnav :global(.nav-in) { padding: 14px 24px; max-width: 76rem; }
+  .topnav :global(.mk) { width: 22px; height: 22px; }
+  .topnav :global(.wm) { height: 15px; }
+  .topnav :global(.nav-right a) { color: var(--g600); }
+  .topnav :global(.nav-right a:hover) { color: var(--ink); }
+</style>

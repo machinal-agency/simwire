@@ -2,6 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/docs.html", "destination": "/docs", "permanent": true },
+    { "source": "/download.html", "destination": "/download", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -11,8 +16,8 @@
       ]
     },
     {
-      "source": "/(.*).html",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
+      "source": "/fonts/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     }
   ]
 }
