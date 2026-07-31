@@ -1,0 +1,20 @@
+{
+  "name": "@simwire/protocol",
+  "version": "0.1.0",
+  "description": "Shared wire protocol types for simwire (device <-> SDK)",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "echo \"no tests\" && exit 0"
+  },
+  "license": "MIT"
+}
