@@ -107,6 +107,13 @@ const sms = await connect({ host: "100.101.23.45" });
 
 A native relay mode is on the roadmap.
 
+## Contributing
+
+Bug reports from real setups are as valuable as code: no two Android
+manufacturers agree on what "keep this service alive" means. See
+[CONTRIBUTING.md](CONTRIBUTING.md), and [SECURITY.md](SECURITY.md) for anything
+security-related.
+
 ## Fair use
 
 Built for development, testing and small transactional volume: OTPs, alerts,

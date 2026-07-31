@@ -1,0 +1,68 @@
+name: Bug report
+description: Something does not work the way the docs say it should
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Found a security issue? Do not file it here — use
+        [private reporting](https://github.com/machinal-agency/simwire/security/advisories/new)
+        instead.
+
+  - type: textarea
+    id: doctor
+    attributes:
+      label: Output of `npx simwire doctor`
+      description: This checks pairing, discovery, reachability, permissions and battery settings, and usually points straight at the cause.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you expected, and what you got instead. Paste any error exactly as it appeared.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce
+      description: The shortest sequence that triggers it. A snippet using `mock()` is ideal when the phone is not involved.
+      placeholder: |
+        1. npx simwire pair
+        2. …
+    validations:
+      required: true
+
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: Package (`npx simwire --version`), app version from the download page, and Node.
+      placeholder: "simwire 0.2.0, app 0.2.0, node 22.11"
+    validations:
+      required: true
+
+  - type: input
+    id: phone
+    attributes:
+      label: Phone and Android version
+      description: The manufacturer matters — several of them kill background services in their own way.
+      placeholder: "Pixel 8, Android 15"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: network
+    attributes:
+      label: How are the phone and the computer connected?
+      options:
+        - Same Wi-Fi
+        - Tailscale or another VPN
+        - Phone hotspot
+        - Other
+    validations:
+      required: true

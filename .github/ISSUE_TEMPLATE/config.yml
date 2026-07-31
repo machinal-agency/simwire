@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://simwire.machinal.agency/docs
+    about: The SDK, the mock, the CLI, reaching a phone from a remote server, and the usual fixes.
+  - name: Report a security vulnerability
+    url: https://github.com/machinal-agency/simwire/security/advisories/new
+    about: Private reporting, so users are not exposed before a fix ships.
+  - name: It stopped working after a while
+    url: https://simwire.machinal.agency/docs#trouble
+    about: Almost always Android killing the app. The Health screen in the app fixes it.
