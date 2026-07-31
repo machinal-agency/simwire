@@ -6,7 +6,7 @@ import type {
   SendFrame,
 } from "@simwire/protocol";
 import { TimeoutError } from "./message.js";
-import type { IncomingMessage } from "./simwire.js";
+import type { IncomingMessage, ReconnectOptions, Reopen } from "./simwire.js";
 import { Simwire } from "./simwire.js";
 import type { Transport } from "./transport.js";
 
@@ -16,6 +16,8 @@ export interface MockOptions {
   /** Emit "delivered" after "sent". Defaults to true. */
   autoDeliver?: boolean;
   device?: Partial<Omit<DeviceInfo, "simSlots">>;
+  /** Tune how `simulateDrop()` recovers, or switch recovery off entirely. */
+  reconnect?: ReconnectOptions;
 }
 
 const MOCK_DEVICE: DeviceInfo = {
@@ -66,10 +68,19 @@ class MockTransport implements Transport {
   }
 
   close(): void {
+    this.#shutdown("closed by client");
+  }
+
+  /** Simulate the network going away rather than a clean shutdown. */
+  drop(reason: string): void {
+    this.#shutdown(reason);
+  }
+
+  #shutdown(reason: string): void {
     this.#closed = true;
     for (const timer of this.#timers) clearTimeout(timer);
     this.#timers.clear();
-    for (const fn of [...this.#closeHandlers]) fn({ reason: "closed by client" });
+    for (const fn of [...this.#closeHandlers]) fn({ reason });
   }
 
   #simulateDelivery(frame: SendFrame): void {
@@ -124,13 +135,17 @@ export interface SimulateIncomingOptions {
 export class MockSimwire extends Simwire {
   readonly outbox: Array<Awaited<ReturnType<Simwire["send"]>>> = [];
   readonly inbox: IncomingMessage[] = [];
-  #transport: MockTransport;
+  #live: { current: MockTransport };
 
   /** @internal — use `mock()`. */
-  constructor(transport: MockTransport) {
-    super(transport, transport.device);
-    this.#transport = transport;
+  constructor(live: { current: MockTransport }, reopen?: Reopen, reconnect?: ReconnectOptions) {
+    super(live.current, live.current.device, reopen, reconnect);
+    this.#live = live;
     this.on("message", (m) => this.inbox.push(m));
+  }
+
+  get #transport(): MockTransport {
+    return this.#live.current;
   }
 
   override async send(options: Parameters<Simwire["send"]>[0]): ReturnType<Simwire["send"]> {
@@ -142,6 +157,15 @@ export class MockSimwire extends Simwire {
   /** Make the next `send()` fail after being queued. */
   failNext(reason = "generic failure"): void {
     this.#transport.failNext(reason);
+  }
+
+  /**
+   * Drop the connection as if the network had gone away, so tests can cover
+   * what the app does while the phone is unreachable. Unless reconnection was
+   * disabled, the session comes back on its own.
+   */
+  simulateDrop(reason = "network lost"): void {
+    this.#transport.drop(reason);
   }
 
   /** Inject an incoming SMS as if the SIM had received it. */
@@ -176,10 +200,15 @@ export class MockSimwire extends Simwire {
 }
 
 export function mock(options: MockOptions = {}): MockSimwire {
-  const transport = new MockTransport({
+  const settings = {
     ...options,
     latencyMs: options.latencyMs ?? 5,
     autoDeliver: options.autoDeliver ?? true,
-  });
-  return new MockSimwire(transport);
+  };
+  const live = { current: new MockTransport(settings) };
+  const reopen = async () => {
+    live.current = new MockTransport(settings);
+    return { transport: live.current, device: live.current.device };
+  };
+  return new MockSimwire(live, reopen, options.reconnect);
 }

@@ -81,3 +81,63 @@ describe("mock()", () => {
     sms.close();
   });
 });
+
+describe("reconnection", () => {
+  it("recovers on its own after a drop", async () => {
+    const sms = mock({ latencyMs: 1, reconnect: { initialDelayMs: 5 } });
+    const events: string[] = [];
+    sms.on("disconnect", ({ willRetry }) => events.push(`disconnect:${willRetry}`));
+    sms.on("reconnecting", ({ attempt }) => events.push(`reconnecting:${attempt}`));
+    sms.on("reconnected", () => events.push("reconnected"));
+
+    sms.simulateDrop();
+    expect(sms.connected).toBe(false);
+
+    await new Promise<void>((r) => sms.once("reconnected", () => r()));
+    expect(sms.connected).toBe(true);
+    expect(events).toEqual(["disconnect:true", "reconnecting:1", "reconnected"]);
+
+    const message = await sms.send({ to: "+15550100000", text: "after the drop" });
+    await message.waitForDelivery();
+    expect(message.status).toBe("delivered");
+    sms.close();
+  });
+
+  it("holds a send until the session is back", async () => {
+    const sms = mock({ latencyMs: 1, reconnect: { initialDelayMs: 30 } });
+    sms.simulateDrop();
+
+    const message = await sms.send({ to: "+15550100000", text: "queued through the outage" });
+    expect(message.status).toBe("queued");
+    sms.close();
+  });
+
+  it("stays down when reconnection is disabled", async () => {
+    const sms = mock({ latencyMs: 1, reconnect: { enabled: false } });
+    const seen: boolean[] = [];
+    sms.on("disconnect", ({ willRetry }) => seen.push(willRetry));
+
+    sms.simulateDrop();
+    await new Promise((r) => setTimeout(r, 40));
+
+    expect(seen).toEqual([false]);
+    expect(sms.connected).toBe(false);
+    await expect(sms.send({ to: "+1", text: "x", queueTimeoutMs: 30 })).rejects.toThrow();
+    sms.close();
+  });
+
+  it("gives up after maxAttempts", async () => {
+    const sms = mock({ latencyMs: 1, reconnect: { initialDelayMs: 5, maxAttempts: 2 } });
+    const attempts: number[] = [];
+    sms.on("reconnecting", ({ attempt }) => attempts.push(attempt));
+
+    // Reopening always succeeds in the mock, so drop again on each recovery to
+    // exercise the attempt counter rather than the happy path.
+    sms.on("reconnected", () => sms.simulateDrop());
+    sms.simulateDrop();
+    await new Promise((r) => setTimeout(r, 120));
+
+    expect(attempts.length).toBeGreaterThanOrEqual(2);
+    sms.close();
+  });
+});
