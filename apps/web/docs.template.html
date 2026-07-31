@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>simwire docs — SDK and CLI reference</title>
+<meta name="description" content="How to use the simwire npm package: pair your Android phone, send and receive SMS from Node.js, test with the built-in mock, CLI reference.">
+<style>
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url(data:font/woff2;base64,__INTER_B64__) format("woff2");
+  }
+  @font-face {
+    font-family: "Geist Mono";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url(data:font/woff2;base64,__GEISTMONO_B64__) format("woff2");
+  }
+
+  :root {
+    --ink: #0a0a0a;
+    --g700: #374151;
+    --g600: #4b5563;
+    --g500: #6b7280;
+    --g400: #9ca3af;
+    --g300: #d1d5db;
+    --g200: #e5e7eb;
+    --g100: #f3f4f6;
+    --g50: #f9fafb;
+    --violet: #6d4dfa;
+    --green: #16a34a;
+    --amber: #d97706;
+    --dark: #101014;
+    --dk-text2: #9a9aa8;
+    --dk-text3: #64646f;
+    --sans: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: #fff; color: var(--ink);
+    font-family: var(--sans); font-size: 15.5px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 6px; }
+
+  /* nav */
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--g200);
+  }
+  .nav-in {
+    padding: 14px 24px; max-width: 76rem; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand { display: flex; align-items: center; gap: 9px; }
+  .mk { flex-shrink: 0; display: block; width: 22px; height: 22px; }
+  .wm { display: block; height: 15px; width: auto; }
+  .nav-right { display: flex; align-items: center; gap: 20px; font-size: 14px; }
+  .nav-right a { color: var(--g600); }
+  .nav-right a:hover { color: var(--ink); }
+
+  /* layout */
+  .shell {
+    max-width: 76rem; margin: 0 auto; padding: 0 24px;
+    display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 48px;
+  }
+  @media (max-width: 860px) { .shell { grid-template-columns: 1fr; gap: 0; } }
+
+  aside {
+    position: sticky; top: 76px;
+    align-self: start;
+    padding: 36px 0 40px;
+    font-size: 13.5px;
+  }
+  @media (max-width: 860px) {
+    aside { position: static; padding: 20px 0 4px; border-bottom: 1px solid var(--g200); }
+    aside nav { display: flex; gap: 4px 16px; flex-wrap: wrap; }
+    aside .grp { margin: 0; }
+  }
+  aside .grp { margin-bottom: 18px; }
+  aside .grp b {
+    display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.09em;
+    text-transform: uppercase; color: var(--g400); margin-bottom: 6px;
+  }
+  aside a { display: block; color: var(--g600); padding: 3.5px 0; }
+  aside a:hover { color: var(--ink); }
+
+  main { padding: 40px 0 90px; min-width: 0; }
+  main section { scroll-margin-top: 84px; margin-bottom: 52px; }
+  h1 { font-size: 34px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 8px; }
+  .lead { color: var(--g600); font-size: 16.5px; margin-bottom: 34px; max-width: 60ch; }
+  h2 {
+    font-size: 21px; font-weight: 600; letter-spacing: -0.02em;
+    margin-bottom: 10px; padding-top: 14px; border-top: 1px solid var(--g200);
+  }
+  h3 { font-size: 16px; font-weight: 600; margin: 20px 0 6px; }
+  p { color: var(--g600); margin-bottom: 12px; max-width: 68ch; }
+  p strong { color: var(--ink); font-weight: 600; }
+  code {
+    font-family: var(--mono); font-size: 13px;
+    background: var(--g100); padding: 1px 6px; border-radius: 6px;
+  }
+  pre {
+    background: var(--dark); color: #d6d6de;
+    font-family: var(--mono); font-size: 13px; line-height: 1.8;
+    border-radius: 14px; padding: 18px 20px; margin: 14px 0 18px;
+    overflow-x: auto;
+  }
+  pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
+  .k { color: #a999ff; }
+  .s { color: #4ade80; }
+  .c { color: var(--dk-text3); }
+  .cmd { color: var(--dk-text2); }
+  .cmd b { color: #fff; font-weight: 500; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 14px 0 18px; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--g200); vertical-align: top; }
+  th { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--g500); font-weight: 600; }
+  td:first-child { font-family: var(--mono); font-size: 13px; white-space: nowrap; }
+  td { color: var(--g600); }
+
+  .note {
+    background: var(--g50); border: 1px solid var(--g200);
+    border-radius: 12px; padding: 14px 18px;
+    color: var(--g600); font-size: 14px; margin: 14px 0 18px; max-width: 68ch;
+  }
+  .note strong { color: var(--ink); }
+  .warn { background: #fffbeb; border-color: #fde9c0; }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <div class="nav-in">
+    <a class="brand" href="./">
+      <svg class="mk" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h7l6 6v11a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3Z" fill="#0a0a0a"/><path d="M6.6 14.2h2.2l1.8-3.6 2.6 7 1.8-3.4h2.4" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17.4" cy="14.2" r="1.6" fill="#8b6bff"/></svg>
+      __WORDMARK_SVG__
+    </a>
+    <div class="nav-right">
+      <a href="./">Home</a>
+      <a href="download.html">Android app</a>
+      <a href="https://github.com/machinal-agency/simwire">GitHub</a>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+  <aside>
+    <nav>
+      <div class="grp">
+        <b>Start</b>
+        <a href="#install">Install &amp; pair</a>
+        <a href="#send">Send an SMS</a>
+        <a href="#receive">Receive SMS</a>
+      </div>
+      <div class="grp">
+        <b>Testing</b>
+        <a href="#mock">The mock device</a>
+      </div>
+      <div class="grp">
+        <b>Reference</b>
+        <a href="#connect">connect()</a>
+        <a href="#message">SentMessage</a>
+        <a href="#events">Events</a>
+        <a href="#cli">CLI</a>
+      </div>
+      <div class="grp">
+        <b>Going further</b>
+        <a href="#remote">Remote servers</a>
+        <a href="#trouble">Troubleshooting</a>
+      </div>
+    </nav>
+  </aside>
+
+  <main>
+    <h1>Documentation</h1>
+    <p class="lead">
+      Everything you need to send and receive real SMS from Node.js through your
+      own Android phone. Five minutes from install to a delivered text.
+    </p>
+
+    <section id="install">
+      <h2>Install &amp; pair</h2>
+      <p>You need Node.js 18+, an Android 8+ phone with the
+      <a href="download.html" style="text-decoration: underline; text-underline-offset: 3px;">simwire app</a>,
+      and both devices on the same Wi-Fi.</p>
+<pre><code><span class="cmd"><b>npm install simwire</b></span>
+<span class="cmd"><b>npx simwire pair</b>       <span class="c"># shows a QR code in your terminal</span></span></code></pre>
+      <p>Scan the QR from the app. The phone generates a token, hands it to your
+      machine over the LAN, and the CLI stores it in <code>~/.simwire/config.json</code>.
+      You never create an account and the token never crosses the internet.</p>
+    </section>
+
+    <section id="send">
+      <h2>Send an SMS</h2>
+<pre><code><span class="k">import</span> { connect } <span class="k">from</span> <span class="s">"simwire"</span>;
+
+<span class="k">const</span> sms = <span class="k">await</span> connect();          <span class="c">// finds your phone on the LAN</span>
+
+<span class="k">const</span> msg = <span class="k">await</span> sms.send({
+  to: <span class="s">"+15550142834"</span>,               <span class="c">// one number or an array</span>
+  text: <span class="s">"Your code is 4821"</span>,
+  simSlot: <span class="k">0</span>,                        <span class="c">// optional: pick the SIM (0 or 1)</span>
+});
+
+<span class="k">await</span> msg.waitForDelivery();         <span class="c">// resolves on the carrier's report</span>
+sms.close();</code></pre>
+      <p><code>send()</code> resolves once the phone has <strong>durably queued</strong> the
+      message: even if the app is killed right after, the SMS goes out when it
+      restarts. Statuses then stream in as the radio reports them.</p>
+    </section>
+
+    <section id="receive">
+      <h2>Receive SMS</h2>
+      <p>Every SMS arriving on the phone's SIM is pushed to your machine over the
+      LAN. No public webhook, no tunnel.</p>
+<pre><code>sms.on(<span class="s">"message"</span>, (m) =&gt; {
+  console.log(m.from, m.text, m.simSlot, m.receivedAt);
+});</code></pre>
+      <p>Messages received while nothing is connected are buffered on the phone
+      and replayed the next time you connect. From the CLI, you can also pipe
+      them straight into a local server:</p>
+<pre><code><span class="cmd"><b>npx simwire listen --forward http://localhost:3000/sms</b></span></code></pre>
+      <p>Each SMS becomes a JSON <code>POST</code>:
+      <code>{ event, from, text, simSlot, receivedAt }</code>.</p>
+    </section>
+
+    <section id="mock">
+      <h2>The mock device</h2>
+      <p>Same API, no hardware. Perfect for unit tests and CI.</p>
+<pre><code><span class="k">import</span> { mock } <span class="k">from</span> <span class="s">"simwire"</span>;
+
+<span class="k">const</span> sms = mock();                  <span class="c">// or mock({ latencyMs: 1 }) in tests</span>
+
+<span class="k">await</span> sms.send({ to: <span class="s">"+15550100000"</span>, text: <span class="s">"OTP: 1234"</span> });
+expect(sms.outbox).toHaveLength(<span class="k">1</span>);
+expect(sms.outbox[<span class="k">0</span>].status).toBe(<span class="s">"queued"</span>);
+
+sms.simulateIncoming({ from: <span class="s">"+15550100001"</span>, text: <span class="s">"STOP"</span> });
+expect(sms.inbox).toHaveLength(<span class="k">1</span>);
+
+sms.failNext(<span class="s">"no signal"</span>);          <span class="c">// next send fails after "queued"</span></code></pre>
+      <table>
+        <thead><tr><th>Member</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td>outbox / inbox</td><td>Arrays of everything sent and received, for assertions.</td></tr>
+          <tr><td>simulateIncoming({from, text, simSlot?})</td><td>Injects an SMS as if the SIM had received it.</td></tr>
+          <tr><td>failNext(reason?)</td><td>Arms a failure for the next send.</td></tr>
+          <tr><td>waitForMessage(predicate?, timeoutMs?)</td><td>Resolves on the next matching incoming message.</td></tr>
+          <tr><td>mock({ latencyMs, autoDeliver })</td><td>Tune status timing; <code>autoDeliver: false</code> stops at "sent".</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="connect">
+      <h2>connect()</h2>
+<pre><code><span class="k">const</span> sms = <span class="k">await</span> connect({
+  host: <span class="s">"192.168.1.42"</span>,   <span class="c">// optional: skip mDNS discovery</span>
+  port: <span class="k">4650</span>,              <span class="c">// optional, default 4650</span>
+  token: <span class="s">"…"</span>,             <span class="c">// optional: defaults to the paired token</span>
+  timeoutMs: <span class="k">10_000</span>,
+});</code></pre>
+      <p>Without options, <code>connect()</code> uses the token saved by
+      <code>simwire pair</code> and finds the phone with mDNS
+      (<code>_simwire._tcp</code>). Pass <code>host</code> when discovery is blocked
+      (guest Wi-Fi, VPN, Docker).</p>
+    </section>
+
+    <section id="message">
+      <h2>SentMessage</h2>
+      <p>The handle returned by <code>send()</code>.</p>
+      <table>
+        <thead><tr><th>Member</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td>id, to, text</td><td>What was sent, with the client-generated id echoed in every status.</td></tr>
+          <tr><td>status</td><td><code>pending → queued → sent → delivered</code>, or <code>failed</code>.</td></tr>
+          <tr><td>waitForStatus("sent", timeoutMs?)</td><td>Resolves when the status is reached; rejects with <code>MessageFailedError</code> on failure.</td></tr>
+          <tr><td>waitForDelivery(timeoutMs?)</td><td>Shortcut for <code>waitForStatus("delivered")</code>.</td></tr>
+          <tr><td>on("status", fn)</td><td>Event per transition, with <code>error</code> when failed.</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><strong>Delivery reports are carrier-dependent.</strong> Some
+      networks never send them. Treat <code>sent</code> as success after a timeout
+      rather than blocking forever on <code>delivered</code>.</div>
+    </section>
+
+    <section id="events">
+      <h2>Events</h2>
+      <table>
+        <thead><tr><th>Event</th><th>Payload</th></tr></thead>
+        <tbody>
+          <tr><td>message</td><td><code>{ from, text, simSlot, receivedAt: Date }</code> — an SMS arrived on the SIM.</td></tr>
+          <tr><td>status</td><td><code>{ message: SentMessage }</code> — an outgoing message changed state.</td></tr>
+          <tr><td>state</td><td><code>{ battery, charging, network }</code> — phone heartbeat every 30s.</td></tr>
+          <tr><td>disconnect</td><td><code>{ reason }</code> — the socket dropped. Reconnect by calling <code>connect()</code> again.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="cli">
+      <h2>CLI</h2>
+      <table>
+        <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td>simwire pair</td><td>Shows the pairing QR and waits for the phone.</td></tr>
+          <tr><td>simwire send &lt;to&gt; &lt;text&gt;</td><td>Sends an SMS and streams statuses. Flags: <code>--sim 1|2</code>, <code>--no-wait</code>, <code>--host</code>, <code>--port</code>.</td></tr>
+          <tr><td>simwire listen</td><td>Prints incoming SMS live. <code>--forward &lt;url&gt;</code> POSTs each one to your server.</td></tr>
+          <tr><td>simwire doctor</td><td>Diagnoses pairing, discovery, reachability and SIM state, with fixes.</td></tr>
+        </tbody>
+      </table>
+      <p>Every command accepts <code>--mock</code> to run against the built-in mock
+      device — try the whole CLI without a phone.</p>
+    </section>
+
+    <section id="remote">
+      <h2>Remote servers</h2>
+      <p>simwire is LAN-first: your server must be able to reach the phone. For a
+      backend running in the cloud, put both on the same private network with
+      <strong>Tailscale</strong> (or WireGuard):</p>
+<pre><code><span class="c"># 1. Install Tailscale on the phone (Play Store) and on your server</span>
+<span class="c"># 2. Pair once from the server (the QR renders over SSH)</span>
+<span class="cmd"><b>npx simwire pair</b></span>
+<span class="c"># 3. Connect using the phone's Tailscale IP</span></code></pre>
+<pre><code><span class="k">const</span> sms = <span class="k">await</span> connect({ host: <span class="s">"100.101.23.45"</span> });</code></pre>
+      <p>Traffic is end-to-end encrypted by WireGuard, and the phone stays
+      reachable behind any NAT. A native relay mode is on the roadmap.</p>
+    </section>
+
+    <section id="trouble">
+      <h2>Troubleshooting</h2>
+<pre><code><span class="cmd"><b>npx simwire doctor</b></span></code></pre>
+      <p>runs the whole checklist with fixes. The classics:</p>
+      <table>
+        <thead><tr><th>Symptom</th><th>Fix</th></tr></thead>
+        <tbody>
+          <tr><td>connect() times out</td><td>Phone and computer on different networks, or mDNS blocked. Pass <code>connect({ host })</code> with the phone's IP.</td></tr>
+          <tr><td>Worked, then stopped</td><td>Android killed the app. Open <strong>Health</strong> in the app and disable battery optimization.</td></tr>
+          <tr><td>Stuck on "sent"</td><td>Your carrier doesn't send delivery reports. Use <code>waitForStatus("sent")</code> instead.</td></tr>
+          <tr><td>send() fails instantly</td><td>SMS permission missing on the phone: Health → SMS permissions.</td></tr>
+        </tbody>
+      </table>
+      <div class="note warn"><strong>Fair use:</strong> carriers throttle and ban SIMs
+      that spam. simwire is for development, testing and small transactional
+      volume — not bulk campaigns.</div>
+    </section>
+  </main>
+</div>
+
+</body>
+</html>
