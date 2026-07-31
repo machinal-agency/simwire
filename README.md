@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src=".github/demo.svg" alt="A terminal sending an SMS through a paired Android phone, and a bank alert arriving back on localhost" width="900">
+<img src=".github/demo.svg" alt="A terminal sending an OTP through a paired Android phone, and the incoming code arriving back on localhost" width="900">
 
 # simwire
 
