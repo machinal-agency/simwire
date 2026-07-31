@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@simwire/protocol": "workspace:*",
-    "@types/node": "^22.10.0",
+    "@types/node": "^26.1.2",
     "@types/qrcode-terminal": "^0.12.2",
     "@types/ws": "^8.5.13",
     "tsup": "^8.3.5",
