@@ -50,6 +50,12 @@ private fun App() {
             },
             onBack = { screen = Screen.Home },
         )
-        Screen.Health -> HealthScreen(onBack = { screen = Screen.Home })
+        Screen.Health -> HealthScreen(
+            onBack = { screen = Screen.Home },
+            onUnpaired = {
+                paired = false
+                screen = Screen.Home
+            },
+        )
     }
 }

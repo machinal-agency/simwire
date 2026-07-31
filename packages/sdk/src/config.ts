@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join } from "node:path";
 
@@ -27,4 +27,17 @@ export function saveConfig(config: StoredConfig): void {
   const path = configPath();
   mkdirSync(dirname(path), { recursive: true });
   writeFileSync(path, `${JSON.stringify(config, null, 2)}\n`, { mode: 0o600 });
+}
+
+/**
+ * Forget the paired device on this machine. The phone keeps its own token
+ * until it is unpaired there too, from the app's Health screen.
+ */
+export function clearConfig(): boolean {
+  try {
+    rmSync(configPath());
+    return true;
+  } catch {
+    return false;
+  }
 }

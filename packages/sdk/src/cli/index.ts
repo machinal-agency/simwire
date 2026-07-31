@@ -4,13 +4,14 @@ import { doctorCommand } from "./doctor.js";
 import { listenCommand } from "./listen.js";
 import { pairCommand } from "./pair.js";
 import { sendCommand } from "./send.js";
+import { unpairCommand } from "./unpair.js";
 
 const program = new Command();
 
 program
   .name("simwire")
   .description("Send and receive real SMS through your own Android phone.")
-  .version("0.1.0");
+  .version("0.2.0");
 
 program
   .command("pair")
@@ -42,6 +43,11 @@ program
   .command("doctor")
   .description("Diagnose pairing, discovery and device connectivity")
   .action(doctorCommand);
+
+program
+  .command("unpair")
+  .description("Forget the paired phone on this machine")
+  .action(unpairCommand);
 
 program.parseAsync().catch((err: Error) => {
   console.error(`\n✗ ${err.message}`);

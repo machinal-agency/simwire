@@ -19,12 +19,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -35,13 +37,17 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
+import app.simwire.gateway.core.GatewayService
+import app.simwire.gateway.core.pairing.TokenStore
 
 private data class Check(val label: String, val ok: Boolean, val fix: (() -> Unit)?)
 
 @Composable
-fun HealthScreen(onBack: () -> Unit) {
+fun HealthScreen(onBack: () -> Unit, onUnpaired: () -> Unit) {
     val context = LocalContext.current
     var refresh by remember { mutableIntStateOf(0) }
+    var confirmUnpair by remember { mutableStateOf(false) }
+    val store = remember { TokenStore(context) }
 
     val permissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions(),
@@ -71,8 +77,57 @@ fun HealthScreen(onBack: () -> Unit) {
             HorizontalDivider(color = Hairline)
         }
 
+        if (store.isPaired) {
+            Spacer(Modifier.height(40.dp))
+            Text("PAIRED COMPUTER", color = Grey50, fontSize = 11.sp, letterSpacing = 2.sp)
+            Spacer(Modifier.height(10.dp))
+            HorizontalDivider(color = Hairline)
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(vertical = 17.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(store.clientName ?: "Unknown", color = White, fontSize = 15.sp)
+                TextButton(onClick = { confirmUnpair = true }) {
+                    Text("Unpair", color = White, fontSize = 14.sp, textDecoration = TextDecoration.Underline)
+                }
+            }
+            HorizontalDivider(color = Hairline)
+            Spacer(Modifier.height(8.dp))
+            Text(
+                "Unpairing revokes the token. That computer can no longer send or receive anything through this phone.",
+                color = Grey50,
+                fontSize = 13.sp,
+                lineHeight = 18.sp,
+            )
+        }
+
         Spacer(Modifier.height(24.dp))
         TextButton(onClick = onBack) { Text("← Back", color = Grey50, fontSize = 14.sp) }
+    }
+
+    if (confirmUnpair) {
+        AlertDialog(
+            onDismissRequest = { confirmUnpair = false },
+            containerColor = Black,
+            titleContentColor = White,
+            textContentColor = Grey70,
+            title = { Text("Unpair this computer?") },
+            text = {
+                Text("The gateway stops and the token is revoked. Pair again by scanning a new QR code.")
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    confirmUnpair = false
+                    GatewayService.stop(context)
+                    store.clear()
+                    onUnpaired()
+                }) { Text("Unpair", color = White) }
+            },
+            dismissButton = {
+                TextButton(onClick = { confirmUnpair = false }) { Text("Cancel", color = Grey50) }
+            },
+        )
     }
 }
 
