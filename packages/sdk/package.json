@@ -1,6 +1,6 @@
 {
   "name": "simwire",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Send and receive real SMS from Node.js through your own Android phone. No Twilio, no signup — your SIM is the gateway.",
   "keywords": ["sms", "gateway", "android", "otp", "2fa", "testing", "local"],
   "homepage": "https://simwire.machinal.agency",
