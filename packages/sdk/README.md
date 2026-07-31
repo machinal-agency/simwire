@@ -23,7 +23,13 @@ sms.on("message", (m) => console.log(m.from, m.text));
 ```
 
 Incoming messages stream straight to your machine over the LAN, so OTP flows
-are testable end to end without a public webhook or a tunnel.
+are testable end to end without a public webhook or a tunnel. When Wi-Fi drops,
+the session retries on its own and rediscovers the phone.
+
+```ts
+sms.on("reconnecting", ({ attempt }) => console.log("attempt", attempt));
+sms.on("reconnected", ({ downtimeMs }) => console.log("back after", downtimeMs));
+```
 
 ## Testing without a phone
 
@@ -41,6 +47,7 @@ sms.simulateIncoming({ from: "+15550100001", text: "STOP" });
 expect(sms.inbox).toHaveLength(1);
 
 sms.failNext("no signal");                         // next send fails
+sms.simulateDrop();                                // and check your app recovers
 ```
 
 ## CLI
@@ -51,15 +58,16 @@ sms.failNext("no signal");                         // next send fails
 | `simwire send <to> <text>` | Sends an SMS and streams its statuses |
 | `simwire listen --forward <url>` | POSTs every incoming SMS to your local server |
 | `simwire doctor` | Reports why a setup is not working, with fixes |
+| `simwire unpair` | Forgets the paired phone on this machine |
 
 Every command accepts `--mock` to run against the built-in mock device.
 
 ## Requirements
 
 Node.js 18+, an Android 8+ phone running the
-[simwire app](https://simwire.machinal.agency/download.html), both on the same
+[simwire app](https://simwire.machinal.agency/download), both on the same
 network. Full documentation at
-[simwire.machinal.agency/docs.html](https://simwire.machinal.agency/docs.html).
+[simwire.machinal.agency/docs](https://simwire.machinal.agency/docs).
 
 ## Fair use
 

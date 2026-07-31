@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" width="900" height="380">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16131f"/><stop offset="0.55" stop-color="#101014"/><stop offset="1" stop-color="#0c0c10"/>
+    </linearGradient>
+    <linearGradient id="bubble" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6d4dfa"/><stop offset="1" stop-color="#8b6bff"/>
+    </linearGradient>
+    <clipPath id="screen"><rect x="646" y="52" width="196" height="288" rx="22"/></clipPath>
+  </defs>
+
+  <style>
+    text, tspan { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+    .step { animation: appear 7.5s linear infinite both; }
+    @keyframes appear {
+      0%, 4% { opacity: 0; }
+      6%, 92% { opacity: 1; }
+      96%, 100% { opacity: 0; }
+    }
+    .d1 { animation-delay: 0s; }      .d2 { animation-delay: 0.5s; }
+    .d3 { animation-delay: 2.1s; }    .d4 { animation-delay: 3.1s; }
+    .d5 { animation-delay: 4.9s; }    .d6 { animation-delay: 5.4s; }
+    .bubbleOut { animation-delay: 1.9s; }  .bubbleIn { animation-delay: 3.8s; }
+
+    
+    .pktGo { animation: flyRight 7.5s linear infinite 1.1s both; }
+    .pktBack { animation: flyLeft 7.5s linear infinite 4.2s both; }
+    @keyframes flyRight {
+      0% { opacity: 0; transform: translateX(0); }
+      2% { opacity: 1; }
+      10% { opacity: 1; transform: translateX(60px); }
+      12%, 100% { opacity: 0; transform: translateX(60px); }
+    }
+    @keyframes flyLeft {
+      0% { opacity: 0; transform: translateX(60px); }
+      2% { opacity: 1; }
+      10% { opacity: 1; transform: translateX(0); }
+      12%, 100% { opacity: 0; transform: translateX(0); }
+    }
+
+    .caret { animation: blink 1.1s steps(1) infinite; }
+    @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .step, .caret { opacity: 1; animation: none; }
+      .pkt { opacity: 0; animation: none; }
+    }
+  </style>
+
+  <rect width="900" height="380" rx="18" fill="url(#bg)"/>
+  <circle cx="150" cy="40" r="150" fill="#6d4dfa" opacity="0.10"/>
+
+  <!-- terminal -->
+  <rect x="30" y="34" width="530" height="312" rx="12" fill="#00000063" stroke="#ffffff17"/>
+  <g fill="#26262e">
+    <circle cx="52" cy="56" r="5"/><circle cx="70" cy="56" r="5"/><circle cx="88" cy="56" r="5"/>
+  </g>
+  <text x="295" y="60" fill="#64646f" font-size="11" text-anchor="middle">~/app</text>
+  <line x1="30" y1="74" x2="560" y2="74" stroke="#ffffff17"/>
+
+  <g font-size="13.5">
+    <text class="step d1" x="52" y="104" fill="#a999ff">$<tspan fill="#e9e9ef" dx="8">node send-otp.js</tspan></text>
+    <text class="step d2" x="52" y="130" fill="#64646f">simwire · connected to Pixel 8 (LAN)</text>
+    <text class="step d3" x="52" y="164" fill="#4ade80">✓<tspan fill="#e9e9ef" dx="8">sent</tspan><tspan fill="#64646f" dx="10">0.6s</tspan></text>
+    <text class="step d4" x="52" y="190" fill="#4ade80">✓<tspan fill="#e9e9ef" dx="8">delivered</tspan><tspan fill="#64646f" dx="10">1.8s</tspan></text>
+    <text class="step d5" x="52" y="234" fill="#9a9aa8">← sms:received  ACME BANK</text>
+    <text class="step d6" x="52" y="260" fill="#64646f">→ POST localhost:3000/sms<tspan fill="#4ade80" dx="10">200</tspan></text>
+    <rect class="caret" x="52" y="286" width="8" height="15" fill="#a999ff"/>
+  </g>
+
+  <!-- link -->
+  <text x="602" y="176" fill="#64646f" font-size="9" letter-spacing="1.4" text-anchor="middle">WI-FI</text>
+  <line x1="572" y1="192" x2="632" y2="192" stroke="#ffffff2e" stroke-dasharray="5 6"/>
+  <circle class="pkt pktGo" cx="572" cy="192" r="3.5" fill="#a999ff"/>
+  <circle class="pkt pktBack" cx="572" cy="192" r="3.5" fill="#a999ff"/>
+
+  <!-- phone -->
+  <rect x="636" y="42" width="216" height="308" rx="32" fill="#050507" stroke="#45454f" stroke-width="1.5"/>
+  <rect x="646" y="52" width="196" height="288" rx="22" fill="#0b0b0f"/>
+  <g clip-path="url(#screen)">
+    <text x="664" y="72" fill="#b9b9c4" font-size="10">14:02</text>
+    <circle cx="744" cy="68" r="4.5" fill="#000" stroke="#1d1d23"/>
+    <g fill="#b9b9c4">
+      <rect x="800" y="68" width="3" height="4" rx="1"/>
+      <rect x="806" y="65" width="3" height="7" rx="1"/>
+      <rect x="812" y="62" width="3" height="10" rx="1"/>
+      <rect x="820" y="63" width="12" height="7" rx="2" opacity="0.5"/>
+      <rect x="821.5" y="64.5" width="7" height="4" rx="1" fill="#4ade80"/>
+    </g>
+    <line x1="646" y1="88" x2="842" y2="88" stroke="#ffffff17"/>
+    <text x="664" y="108" fill="#e9e9ef" font-size="12" font-weight="600">simwire</text>
+    <circle cx="778" cy="104" r="3" fill="#4ade80"/>
+    <text x="787" y="108" fill="#9a9aa8" font-size="8.5">Connected</text>
+    <line x1="646" y1="120" x2="842" y2="120" stroke="#ffffff17"/>
+
+    <g class="step bubbleOut">
+      <rect x="690" y="134" width="140" height="52" rx="12" fill="url(#bubble)"/>
+      <text x="702" y="152" fill="#ffffffa6" font-size="8">to +1 555 014 2834</text>
+      <text x="702" y="166" fill="#fff" font-size="11">Your code is 4821</text>
+      <text x="702" y="179" fill="#ffffffb8" font-size="8">delivered ✓</text>
+    </g>
+
+    <g class="step bubbleIn">
+      <rect x="658" y="200" width="152" height="54" rx="12" fill="#1c1c24" stroke="#ffffff17"/>
+      <text x="670" y="218" fill="#64646f" font-size="8">ACME BANK</text>
+      <text x="670" y="232" fill="#e9e9ef" font-size="10.5">BANK: You received</text>
+      <text x="670" y="245" fill="#e9e9ef" font-size="10.5">$250.00</text>
+    </g>
+
+    <line x1="646" y1="310" x2="842" y2="310" stroke="#ffffff17"/>
+    <text x="664" y="326" fill="#64646f" font-size="9">SIM 1 · LTE</text>
+    <text x="824" y="326" fill="#64646f" font-size="9" text-anchor="end">4650/ws</text>
+  </g>
+  <rect x="702" y="332" width="64" height="3.5" rx="2" fill="#ffffff4d"/>
+</svg>
