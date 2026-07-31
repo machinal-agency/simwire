@@ -34,6 +34,8 @@ import Nav from "../components/Nav.astro";
       </div>
       <div class="grp">
         <b>Going further</b>
+        <a href="#reconnect">Losing the connection</a>
+        <a href="#unpair">Unpairing</a>
         <a href="#remote">Remote servers</a>
         <a href="#trouble">Troubleshooting</a>
       </div>
@@ -160,7 +162,9 @@ sms.failNext(<span class="s">"no signal"</span>);          <span class="c">// ne
           <tr><td>message</td><td><code>&#123; from, text, simSlot, receivedAt: Date &#125;</code> — an SMS arrived on the SIM.</td></tr>
           <tr><td>status</td><td><code>&#123; message: SentMessage &#125;</code> — an outgoing message changed state.</td></tr>
           <tr><td>state</td><td><code>&#123; battery, charging, network &#125;</code> — phone heartbeat every 30s.</td></tr>
-          <tr><td>disconnect</td><td><code>&#123; reason &#125;</code> — the socket dropped. Reconnect by calling <code>connect()</code> again.</td></tr>
+          <tr><td>disconnect</td><td><code>&#123; reason, willRetry &#125;</code> — the socket dropped.</td></tr>
+          <tr><td>reconnecting</td><td><code>&#123; attempt, delayMs &#125;</code> — a retry is scheduled.</td></tr>
+          <tr><td>reconnected</td><td><code>&#123; device, downtimeMs &#125;</code> — the session is back.</td></tr>
         </tbody>
       </table>
     </section>
@@ -174,6 +178,7 @@ sms.failNext(<span class="s">"no signal"</span>);          <span class="c">// ne
           <tr><td>simwire send &lt;to&gt; &lt;text&gt;</td><td>Sends an SMS and streams statuses. Flags: <code>--sim 1|2</code>, <code>--no-wait</code>, <code>--host</code>, <code>--port</code>.</td></tr>
           <tr><td>simwire listen</td><td>Prints incoming SMS live. <code>--forward &lt;url&gt;</code> POSTs each one to your server.</td></tr>
           <tr><td>simwire doctor</td><td>Diagnoses pairing, discovery, reachability and SIM state, with fixes.</td></tr>
+          <tr><td>simwire unpair</td><td>Forgets the paired phone on this machine. Revoke it on the phone too from the app's Health screen.</td></tr>
         </tbody>
       </table>
       <p>Every command accepts <code>--mock</code> to run against the built-in mock
@@ -192,6 +197,35 @@ sms.failNext(<span class="s">"no signal"</span>);          <span class="c">// ne
 <pre><code><span class="k">const</span> sms = <span class="k">await</span> connect(&#123; host: <span class="s">"100.101.23.45"</span> &#125;);</code></pre>
       <p>Traffic is end-to-end encrypted by WireGuard, and the phone stays
       reachable behind any NAT. A native relay mode is on the roadmap.</p>
+    </section>
+
+    <section id="reconnect">
+      <h2>Losing the connection</h2>
+      <p>Wi-Fi drops, phones sleep, laptops move between networks. The session
+      retries on its own with a growing delay, rediscovering the phone each time
+      in case its address changed.</p>
+<pre><code>sms.on(<span class="s">"disconnect"</span>, (&#123; reason, willRetry &#125;) =&gt; log(reason));
+sms.on(<span class="s">"reconnecting"</span>, (&#123; attempt &#125;) =&gt; log(`attempt $&#123;attempt&#125;`));
+sms.on(<span class="s">"reconnected"</span>, (&#123; downtimeMs &#125;) =&gt; log(`back after $&#123;downtimeMs&#125;ms`));</code></pre>
+      <p>A <code>send()</code> issued while the session is down waits for it to
+      come back, within the same <code>queueTimeoutMs</code> budget, instead of
+      failing immediately. <code>sms.connected</code> tells you the current state.</p>
+<pre><code><span class="k">const</span> sms = <span class="k">await</span> connect(&#123;
+  reconnect: &#123; initialDelayMs: <span class="k">500</span>, maxDelayMs: <span class="k">15_000</span>, maxAttempts: <span class="k">10</span> &#125;,
+&#125;);
+
+<span class="k">await</span> connect(&#123; reconnect: <span class="k">false</span> &#125;);   <span class="c">// opt out entirely</span></code></pre>
+      <p>Test your own handling with the mock: <code>sms.simulateDrop()</code>
+      takes the session down exactly like a lost network.</p>
+    </section>
+
+    <section id="unpair">
+      <h2>Unpairing</h2>
+      <p>Pairing is two-sided, so revoking it is too.</p>
+<pre><code><span class="cmd"><b>npx simwire unpair</b>   <span class="c"># forgets the phone on this machine</span></span></code></pre>
+      <p>On the phone, open the app, go to <strong>Health</strong> and tap
+      <strong>Unpair</strong>. That stops the gateway and revokes the token, so
+      the computer can no longer send or receive anything through it.</p>
     </section>
 
     <section id="trouble">
