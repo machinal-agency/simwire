@@ -11,3 +11,5 @@ apps/android/build/
 apps/android/app/build/
 
 apps/web/*.apk
+apps/android/keystore.properties
+apps/android/*.keystore

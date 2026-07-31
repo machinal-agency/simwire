@@ -1,0 +1,5 @@
+# Sources and build inputs; only the rendered pages are deployed.
+*.template.html
+build.py
+assets/
+*.apk
