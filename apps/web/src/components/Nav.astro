@@ -33,6 +33,6 @@ const { sticky = false, animated = false } = Astro.props;
   .topnav :global(.nav-in) { padding: 14px 24px; max-width: 76rem; }
   .topnav :global(.mk) { width: 22px; height: 22px; }
   .topnav :global(.wm) { height: 15px; }
-  .topnav :global(.nav-right a) { color: var(--g600); }
-  .topnav :global(.nav-right a:hover) { color: var(--ink); }
+  .topnav :global(.nav-right a:not(.pill)) { color: var(--g600); }
+  .topnav :global(.nav-right a:not(.pill):hover) { color: var(--ink); }
 </style>

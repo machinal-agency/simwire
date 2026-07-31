@@ -78,8 +78,10 @@ svg.ic {
 .nav-mid a:hover { color: var(--ink); }
 .nav-mid .ic { width: 14px; height: 14px; color: var(--g500); }
 .nav-right { display: flex; align-items: center; gap: 20px; }
-.nav-right .login, .nav-right a { font-size: 14px; color: var(--g700); }
-.nav-right .login:hover, .nav-right a:hover { color: var(--ink); }
+/* :not(.pill) matters: this selector outranks .pill, and without it the button
+   label inherits the grey and turns unreadable on its black background. */
+.nav-right .login, .nav-right a:not(.pill) { font-size: 14px; color: var(--g700); }
+.nav-right .login:hover, .nav-right a:not(.pill):hover { color: var(--ink); }
 
 /* ---------------------------------------------------------------- buttons */
 .pill {
