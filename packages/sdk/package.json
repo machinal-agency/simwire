@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "description": "Send and receive real SMS from Node.js through your own Android phone. No Twilio, no signup — your SIM is the gateway.",
   "keywords": ["sms", "gateway", "android", "otp", "2fa", "testing", "local"],
+  "homepage": "https://simwire.machinal.agency",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/machinal-agency/simwire.git",
+    "directory": "packages/sdk"
+  },
+  "bugs": "https://github.com/machinal-agency/simwire/issues",
+  "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -16,13 +24,16 @@
     }
   },
   "files": ["dist"],
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsup",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "prepublishOnly": "pnpm build && pnpm test"
   },
   "dependencies": {
-    "@simwire/protocol": "workspace:*",
     "bonjour-service": "^1.3.0",
     "commander": "^12.1.0",
     "picocolors": "^1.1.1",
@@ -30,10 +41,11 @@
     "ws": "^8.18.0"
   },
   "devDependencies": {
+    "@simwire/protocol": "workspace:*",
     "@types/node": "^22.10.0",
     "@types/qrcode-terminal": "^0.12.2",
     "@types/ws": "^8.5.13",
+    "tsup": "^8.3.5",
     "vitest": "^2.1.8"
-  },
-  "license": "MIT"
+  }
 }
