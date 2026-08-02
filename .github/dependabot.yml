@@ -32,6 +32,13 @@ updates:
     groups:
       android-toolchain:
         patterns: ["*"]
+    ignore:
+      # AGP 9 requires Gradle 9.5, which is a migration to schedule rather than
+      # a bump to merge. Lift this when the wrapper moves.
+      - dependency-name: com.android.application
+        update-types: [version-update:semver-major]
+      - dependency-name: org.jetbrains.kotlin.android
+        update-types: [version-update:semver-major]
 
   - package-ecosystem: github-actions
     directory: /
