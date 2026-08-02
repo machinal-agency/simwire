@@ -1,28 +1,42 @@
 version: 2
 updates:
+  # Two pull requests per ecosystem at most: the routine bumps in one, the
+  # majors in another. Ungrouped, a dozen of them land at once and the ones
+  # that have to move together fail apart.
   - package-ecosystem: npm
     directory: /packages/sdk
     schedule:
       interval: weekly
     groups:
-      # One pull request for the routine bumps, separate ones for majors.
-      minor-and-patch:
+      sdk-minor-and-patch:
         update-types: [minor, patch]
+      sdk-major:
+        update-types: [major]
 
   - package-ecosystem: npm
     directory: /apps/web
     schedule:
       interval: weekly
     groups:
-      minor-and-patch:
+      web-minor-and-patch:
         update-types: [minor, patch]
+      web-major:
+        update-types: [major]
 
+  # Kotlin, KSP, AGP and Compose are version-locked to each other, so a single
+  # pull request is the only one that can pass.
   - package-ecosystem: gradle
     directory: /apps/android
     schedule:
       interval: monthly
+    groups:
+      android-toolchain:
+        patterns: ["*"]
 
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]
