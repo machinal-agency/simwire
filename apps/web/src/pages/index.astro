@@ -377,7 +377,15 @@ sms.simulateIncoming(&#123; from: <span class="s">"+15550100001"</span>, text: <
   @media (min-width: 768px) { .nav-mid { display: flex; } }
 
   /* ------------------------------------------------- hero */
-  .hero { padding: 96px 24px 128px; max-width: 80rem; margin: 0 auto; text-align: center; position: relative; }
+  .hero {
+    padding: 96px 24px 128px; max-width: 80rem; margin: 0 auto;
+    text-align: center; position: relative;
+    /* The blurred blobs are wider than a phone viewport and reach past the
+       right edge. overflow-x: hidden on body hides the scrollbar but still
+       lets a touch drag the page sideways, so they are clipped at their own
+       container; clip rather than hidden keeps the sticky nav working. */
+    overflow-x: clip;
+  }
   .blob {
     position: absolute; border-radius: 50%; filter: blur(85px);
     pointer-events: none; z-index: -1;

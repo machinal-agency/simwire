@@ -110,7 +110,7 @@ sms.simulateIncoming(&#123; from: <span class="s">"+15550100001"</span>, text: <
 expect(sms.inbox).toHaveLength(<span class="k">1</span>);
 
 sms.failNext(<span class="s">"no signal"</span>);          <span class="c">// next send fails after "queued"</span></code></pre>
-      <table>
+      <div class="tw"><table>
         <thead><tr><th>Member</th><th>What it does</th></tr></thead>
         <tbody>
           <tr><td>outbox / inbox</td><td>Arrays of everything sent and received, for assertions.</td></tr>
@@ -119,7 +119,7 @@ sms.failNext(<span class="s">"no signal"</span>);          <span class="c">// ne
           <tr><td>waitForMessage(predicate?, timeoutMs?)</td><td>Resolves on the next matching incoming message.</td></tr>
           <tr><td>mock(&#123; latencyMs, autoDeliver &#125;)</td><td>Tune status timing; <code>autoDeliver: false</code> stops at "sent".</td></tr>
         </tbody>
-      </table>
+      </table></div>
     </section>
 
     <section id="connect">
@@ -139,7 +139,7 @@ sms.failNext(<span class="s">"no signal"</span>);          <span class="c">// ne
     <section id="message">
       <h2>SentMessage</h2>
       <p>The handle returned by <code>send()</code>.</p>
-      <table>
+      <div class="tw"><table>
         <thead><tr><th>Member</th><th>What it does</th></tr></thead>
         <tbody>
           <tr><td>id, to, text</td><td>What was sent, with the client-generated id echoed in every status.</td></tr>
@@ -148,7 +148,7 @@ sms.failNext(<span class="s">"no signal"</span>);          <span class="c">// ne
           <tr><td>waitForDelivery(timeoutMs?)</td><td>Shortcut for <code>waitForStatus("delivered")</code>.</td></tr>
           <tr><td>on("status", fn)</td><td>Event per transition, with <code>error</code> when failed.</td></tr>
         </tbody>
-      </table>
+      </table></div>
       <div class="note"><strong>Delivery reports are carrier-dependent.</strong> Some
       networks never send them. Treat <code>sent</code> as success after a timeout
       rather than blocking forever on <code>delivered</code>.</div>
@@ -156,7 +156,7 @@ sms.failNext(<span class="s">"no signal"</span>);          <span class="c">// ne
 
     <section id="events">
       <h2>Events</h2>
-      <table>
+      <div class="tw"><table>
         <thead><tr><th>Event</th><th>Payload</th></tr></thead>
         <tbody>
           <tr><td>message</td><td><code>&#123; from, text, simSlot, receivedAt: Date &#125;</code> — an SMS arrived on the SIM.</td></tr>
@@ -166,12 +166,12 @@ sms.failNext(<span class="s">"no signal"</span>);          <span class="c">// ne
           <tr><td>reconnecting</td><td><code>&#123; attempt, delayMs &#125;</code> — a retry is scheduled.</td></tr>
           <tr><td>reconnected</td><td><code>&#123; device, downtimeMs &#125;</code> — the session is back.</td></tr>
         </tbody>
-      </table>
+      </table></div>
     </section>
 
     <section id="cli">
       <h2>CLI</h2>
-      <table>
+      <div class="tw"><table>
         <thead><tr><th>Command</th><th>What it does</th></tr></thead>
         <tbody>
           <tr><td>simwire pair</td><td>Shows the pairing QR and waits for the phone.</td></tr>
@@ -180,7 +180,7 @@ sms.failNext(<span class="s">"no signal"</span>);          <span class="c">// ne
           <tr><td>simwire doctor</td><td>Diagnoses pairing, discovery, reachability and SIM state, with fixes.</td></tr>
           <tr><td>simwire unpair</td><td>Forgets the paired phone on this machine. Revoke it on the phone too from the app's Health screen.</td></tr>
         </tbody>
-      </table>
+      </table></div>
       <p>Every command accepts <code>--mock</code> to run against the built-in mock
       device — try the whole CLI without a phone.</p>
     </section>
@@ -232,7 +232,7 @@ sms.on(<span class="s">"reconnected"</span>, (&#123; downtimeMs &#125;) =&gt; lo
       <h2>Troubleshooting</h2>
 <pre><code><span class="cmd"><b>npx simwire doctor</b></span></code></pre>
       <p>runs the whole checklist with fixes. The classics:</p>
-      <table>
+      <div class="tw"><table>
         <thead><tr><th>Symptom</th><th>Fix</th></tr></thead>
         <tbody>
           <tr><td>connect() times out</td><td>Phone and computer on different networks, or mDNS blocked. Pass <code>connect(&#123; host &#125;)</code> with the phone's IP.</td></tr>
@@ -240,7 +240,7 @@ sms.on(<span class="s">"reconnected"</span>, (&#123; downtimeMs &#125;) =&gt; lo
           <tr><td>Stuck on "sent"</td><td>Your carrier doesn't send delivery reports. Use <code>waitForStatus("sent")</code> instead.</td></tr>
           <tr><td>send() fails instantly</td><td>SMS permission missing on the phone: Health → SMS permissions.</td></tr>
         </tbody>
-      </table>
+      </table></div>
       <div class="note warn"><strong>Fair use:</strong> carriers throttle and ban SIMs
       that spam. simwire is for development, testing and small transactional
       volume — not bulk campaigns.</div>
@@ -308,6 +308,13 @@ sms.on(<span class="s">"reconnected"</span>, (&#123; downtimeMs &#125;) =&gt; lo
   th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--g200); vertical-align: top; }
   th { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--g500); font-weight: 600; }
   td:first-child { font-family: var(--mono); font-size: 13px; white-space: nowrap; }
+  .tw { overflow-x: auto; }
+  /* Under this width the first column alone is wider than the screen. */
+  @media (max-width: 640px) {
+    td:first-child { white-space: normal; word-break: break-word; }
+    table { font-size: 13.5px; }
+    th, td { padding: 9px 10px; }
+  }
   td { color: var(--g600); }
 
   .note {
