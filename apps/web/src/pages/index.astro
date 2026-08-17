@@ -483,7 +483,7 @@ sms.simulateIncoming(&#123; from: <span class="s">"+15550100001"</span>, text: <
   /* ------------------------------------------------- demo area */
   .demo {
     position: relative; border-radius: 24px; overflow: hidden;
-    height: 400px; background: var(--dark);
+    height: 560px; background: var(--dark);
     box-shadow:
       0 40px 90px -30px rgba(70, 40, 180, 0.42),
       0 10px 30px rgba(10, 10, 20, 0.18);
@@ -507,8 +507,11 @@ sms.simulateIncoming(&#123; from: <span class="s">"+15550100001"</span>, text: <
     padding: 28px clamp(18px, 3.4vw, 40px);
   }
   @media (max-width: 767px) {
-    .scene { grid-template-columns: 1fr; }
-    .scene-chat { display: none; }
+    /* On phones the conversation is the story: the terminal steps aside and
+       the HUD card docks at the bottom, below the messages. */
+    .scene { grid-template-columns: 1fr; align-items: start; padding-top: 20px; }
+    .term { display: none; }
+    .scene-chat { justify-content: flex-start; padding-right: 0; }
   }
 
   .term {
@@ -555,7 +558,7 @@ sms.simulateIncoming(&#123; from: <span class="s">"+15550100001"</span>, text: <
   .overlay.on { display: block; }
   .card {
     position: absolute; top: 50%; left: 32px; transform: translateY(-50%);
-    width: min(320px, 58%);
+    width: min(320px, 44%);
     pointer-events: auto;
     background: rgba(20, 20, 27, 0.94);
     -webkit-backdrop-filter: blur(20px) saturate(1.4);
@@ -567,7 +570,13 @@ sms.simulateIncoming(&#123; from: <span class="s">"+15550100001"</span>, text: <
     color: var(--dk-text);
   }
   @media (max-width: 767px) {
-    .card { left: 50%; transform: translate(-50%, -50%); width: 92%; max-width: 340px; }
+    .card {
+      top: auto; bottom: 12px; left: 50%; transform: translateX(-50%);
+      width: 94%; max-width: 340px;
+      padding: 16px 16px 14px;
+    }
+    .qr-mini { margin-bottom: 10px; }
+    .qr-mini svg { width: 70px; height: 70px; }
   }
   .card h4 { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 2px; color: #fff; }
   .card .cap { font-size: 12.5px; color: var(--dk-text2); margin-bottom: 14px; }
