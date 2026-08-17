@@ -159,12 +159,12 @@ sms.failNext(<span class="s">"no signal"</span>);          <span class="c">// ne
       <div class="tw"><table>
         <thead><tr><th>Event</th><th>Payload</th></tr></thead>
         <tbody>
-          <tr><td>message</td><td><code>&#123; from, text, simSlot, receivedAt: Date &#125;</code> — an SMS arrived on the SIM.</td></tr>
-          <tr><td>status</td><td><code>&#123; message: SentMessage &#125;</code> — an outgoing message changed state.</td></tr>
-          <tr><td>state</td><td><code>&#123; battery, charging, network &#125;</code> — phone heartbeat every 30s.</td></tr>
-          <tr><td>disconnect</td><td><code>&#123; reason, willRetry &#125;</code> — the socket dropped.</td></tr>
-          <tr><td>reconnecting</td><td><code>&#123; attempt, delayMs &#125;</code> — a retry is scheduled.</td></tr>
-          <tr><td>reconnected</td><td><code>&#123; device, downtimeMs &#125;</code> — the session is back.</td></tr>
+          <tr><td>message</td><td><code>&#123; from, text, simSlot, receivedAt: Date &#125;</code>: an SMS arrived on the SIM.</td></tr>
+          <tr><td>status</td><td><code>&#123; message: SentMessage &#125;</code>: an outgoing message changed state.</td></tr>
+          <tr><td>state</td><td><code>&#123; battery, charging, network &#125;</code>: phone heartbeat every 30s.</td></tr>
+          <tr><td>disconnect</td><td><code>&#123; reason, willRetry &#125;</code>: the socket dropped.</td></tr>
+          <tr><td>reconnecting</td><td><code>&#123; attempt, delayMs &#125;</code>: a retry is scheduled.</td></tr>
+          <tr><td>reconnected</td><td><code>&#123; device, downtimeMs &#125;</code>: the session is back.</td></tr>
         </tbody>
       </table></div>
     </section>
@@ -182,7 +182,7 @@ sms.failNext(<span class="s">"no signal"</span>);          <span class="c">// ne
         </tbody>
       </table></div>
       <p>Every command accepts <code>--mock</code> to run against the built-in mock
-      device — try the whole CLI without a phone.</p>
+      device, so you can try the whole CLI without a phone.</p>
     </section>
 
     <section id="remote">
@@ -243,7 +243,7 @@ sms.on(<span class="s">"reconnected"</span>, (&#123; downtimeMs &#125;) =&gt; lo
       </table></div>
       <div class="note warn"><strong>Fair use:</strong> carriers throttle and ban SIMs
       that spam. simwire is for development, testing and small transactional
-      volume — not bulk campaigns.</div>
+      volume, not bulk campaigns.</div>
     </section>
   </main>
 </div>

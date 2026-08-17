@@ -95,19 +95,30 @@ svg.ic {
 .pill:active { transform: translateY(0); }
 
 /* ---------------------------------------------------------------- motion */
+/* Hero entrance: rises and unblurs, so the blur language is visible on load,
+   not only on scroll. */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(30px); filter: blur(10px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
-.fiu { opacity: 0; animation: fadeInUp 0.6s ease-out forwards; }
+.fiu { opacity: 0; animation: fadeInUp 0.8s cubic-bezier(0.21, 0.47, 0.32, 0.98) forwards; }
 
-.rv { opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease; }
-.rv.vis { opacity: 1; transform: none; }
+/* Scroll reveal: rises and unblurs into place. Runs as an animation (not a
+   transition) so it never fights the hover transitions on the same elements;
+   once finished, .rv-done drops the animation to hand transform back to hover. */
+.rv { opacity: 0; }
+.rv.vis { animation: rvIn 0.9s cubic-bezier(0.21, 0.47, 0.32, 0.98) var(--rvd, 0s) both; }
+.rv.rv-done { animation: none; opacity: 1; }
+@keyframes rvIn {
+  from { opacity: 0; transform: translateY(30px); filter: blur(14px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .fiu { opacity: 1; animation: none; }
-  .rv { opacity: 1; transform: none; transition: none; }
+  .rv { opacity: 1; }
+  .rv.vis { animation: none; }
 }
 
 /* ---------------------------------------------------------------- footer */

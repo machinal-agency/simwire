@@ -6,12 +6,14 @@ interface Props {
   sticky?: boolean;
   /** Landing page staggers its entrance with the rest of the hero. */
   animated?: boolean;
+  /** Landing bar: transparent over the hero, frosted glass once scrolled. */
+  glass?: boolean;
 }
 
-const { sticky = false, animated = false } = Astro.props;
+const { sticky = false, animated = false, glass = false } = Astro.props;
 ---
 
-<nav class:list={[{ topnav: sticky, fiu: animated }]} style={animated ? "animation-delay: 0.05s" : undefined}>
+<nav class:list={[{ topnav: sticky, glassnav: glass, fiu: animated }]} style={animated ? "animation-delay: 0.05s" : undefined}>
   <div class="nav-in">
     <Wordmark />
     <slot name="mid" />
@@ -29,6 +31,20 @@ const { sticky = false, animated = false } = Astro.props;
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--g200);
   }
+  .glassnav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid transparent;
+    transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+  .glassnav.scrolled {
+    background: rgba(255, 255, 255, 0.72);
+    -webkit-backdrop-filter: blur(14px) saturate(1.5);
+    backdrop-filter: blur(14px) saturate(1.5);
+    border-bottom-color: rgba(10, 10, 10, 0.07);
+    box-shadow: 0 8px 30px rgba(10, 10, 20, 0.05);
+  }
   /* The docs bar sits slightly tighter than the marketing one. */
   .topnav :global(.nav-in) { padding: 14px 24px; max-width: 76rem; }
   .topnav :global(.mk) { width: 22px; height: 22px; }
@@ -36,3 +52,12 @@ const { sticky = false, animated = false } = Astro.props;
   .topnav :global(.nav-right a:not(.pill)) { color: var(--g600); }
   .topnav :global(.nav-right a:not(.pill):hover) { color: var(--ink); }
 </style>
+
+{glass && <script is:inline>
+  {
+    const gn = document.querySelector(".glassnav");
+    const onScroll = () => gn.classList.toggle("scrolled", window.scrollY > 12);
+    addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+</script>}
