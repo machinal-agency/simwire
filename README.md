@@ -115,6 +115,11 @@ manufacturers agree on what "keep this service alive" means. See
 [CONTRIBUTING.md](CONTRIBUTING.md), and [SECURITY.md](SECURITY.md) for anything
 security-related.
 
+Looking for something to work on? The
+[help wanted](https://github.com/machinal-agency/simwire/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+issues each explain the problem, what "done" looks like, and where to start in
+the code.
+
 ## Fair use
 
 Built for development, testing and small transactional volume: OTPs, alerts,
