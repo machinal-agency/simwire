@@ -8,6 +8,7 @@
 No Twilio, no signup, no per-message fees: your SIM is the gateway.
 
 [![npm](https://img.shields.io/npm/v/simwire?color=6d4dfa&label=npm)](https://www.npmjs.com/package/simwire)
+[![downloads](https://img.shields.io/npm/dm/simwire?color=6d4dfa&label=downloads)](https://www.npmjs.com/package/simwire)
 [![CI](https://github.com/machinal-agency/simwire/actions/workflows/ci.yml/badge.svg)](https://github.com/machinal-agency/simwire/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-MIT-black)](LICENSE)
 [![Android app](https://img.shields.io/github/v/release/machinal-agency/simwire?color=0a0a0a&label=android%20app)](https://github.com/machinal-agency/simwire/releases/latest)
